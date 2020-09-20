@@ -23,10 +23,10 @@ if (process.env.YOUTH_TIME && process.env.YOUTH_TIME.split('&') && process.env.Y
   READTIME = process.env.YOUTH_TIME.split('&');
   }
   
-for (let i = 0; i < CookieYouth.length; i++) {
+for (let i = 0; i < ARTBODYs.length; i++) {
   const index = (i + 1 === 1) ? '' : (i + 1);
-  exports['youthheader_zq' + index] = CookieYouth[i];
-  exports['read_zq' + index] = ARTBODYs[i];
-  exports['red_zq' + index] = REDBODYs[i];
-  exports['readtime_zq' + index] = READTIME[i];
+  exports['youthheader_zq'] = CookieYouth[i];
+  exports['read_zq'] = ARTBODYs[i];
+  exports['red_zq'] = REDBODYs[i];
+  exports['readtime_zq'] = READTIME[i];
 }

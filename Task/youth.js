@@ -132,6 +132,9 @@ if (isGetCookie = typeof $request !== 'undefined') {
   for (let i = 0; i < readArr.length; i++) {
     if (cookiesArr[i]) {
       signheaderVal = cookiesArr[i];
+      articlebodyVal = readArr[i];
+      timebodyVal = timeArr[i];
+      redpbodyVal = redpArr[i];
       $.index = i + 1;
       console.log(`\n开始【中青看点${$.index}】\n`)
     }
