@@ -130,7 +130,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
     $.msg($.name, '【提示】请先获取中青看点一cookie')
     return;
   }
-  for (let i = 0; i < cookiesArr.length; i++) {
+  for (let i = 0; i < readArr.length; i++) {
     if (cookiesArr[i]) {
       signheaderVal = cookiesArr[i];
       $.index = i + 1;
