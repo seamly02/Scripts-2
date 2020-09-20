@@ -10,8 +10,8 @@ let CookieYouth = [
     REDBODYs  = ['', ''],
     READTIME = ['', ''];
 
-if (process.env.YOUTH_HEADER && process.env.YOUTH_HEADER.split('&') && process.env.YOUTH_HEADER.split('&').length > 0) {
-  CookieYouth = process.env.YOUTH_HEADER.split('&');
+if (process.env.YOUTH_HEADER && process.env.YOUTH_HEADER.split('#') && process.env.YOUTH_HEADER.split('#').length > 0) {
+  CookieYouth = process.env.YOUTH_HEADER.split('#');
   }
 if (process.env.YOUTH_ARTBODY && process.env.YOUTH_ARTBODY.split('&') && process.env.YOUTH_ARTBODY.split('&').length > 0) {
   ARTBODYs = process.env.YOUTH_ARTBODY.split('&');

@@ -116,7 +116,6 @@ if ($.isNode()) {
 }
 
 
-
 const firstcheck = $.getdata('signt');
 const runtimes = $.getdata('times');
 const opboxtime = $.getdata('opbox');
