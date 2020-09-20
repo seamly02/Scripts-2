@@ -148,7 +148,6 @@ if (isGetCookie = typeof $request !== 'undefined') {
       $.index = i + 1;
       console.log(`\n开始【中青看点${$.index}】\n`)
     }
-  }
   await sign();
   await signInfo();
   await Invitant();
@@ -175,7 +174,8 @@ if(runtimes<15){
   await rotary();
   await rotaryCheck();
   await earningsInfo();
-  await showmsg()
+  await showmsg();
+ }
 })()
   .catch((e) => $.logErr(e))
   .finally(() => $.done())
