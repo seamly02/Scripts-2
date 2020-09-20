@@ -4,12 +4,11 @@
 name: youth
 
 on:
-
  push:
   branches: 
      - master 
   schedule:
-     - cron: '*/3 * * * *'
+     - cron: '*/5 16-22 * * *'
   watch:
     types: started
 
@@ -38,5 +37,7 @@ jobs:
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+
 
     
