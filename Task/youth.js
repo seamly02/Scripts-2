@@ -72,40 +72,60 @@ let notifyInterval = $.getdata("notifytimes")||50 //通知间隔，默认抽奖�
 const YOUTH_HOST = "https://kd.youth.cn/WebApi/";
 const notify = $.isNode() ? require('./sendNotify') : '';
 let logs = $.getdata('zqlogs')||false, signresult; 
-//let signheaderVal = $.getdata('youthheader_zq');
-//let timebodyVal = $.getdata('readtime_zq');
-//let articlebodyVal = $.getdata('read_zq');
-//let redpbodyVal = $.getdata('red_zq');
 let cookiesArr = [], signheaderVal = '',
     readArr = [], articlebodyVal ='',
     timeArr = [], timebodyVal = '',
     redpArr = [], redpbodyVal = '';
+let CookieYouth = [
+    '',//账号一ck 
+    '',//账号二ck,如有更多,依次类推
+] ,
+    ARTBODYs = ['', ''],
+    REDBODYs  = ['', ''],
+    READTIME = ['', ''];
+if ($.isNode()) {
 
-const YtCookieNode = $.isNode() ? require('./YouthCookie.js') : '';
-const ReadbodyNode = $.isNode() ? require('./YouthCookie.js') : '';
-const RedbodyNode = $.isNode() ? require('./YouthCookie.js') : '';
-const timebodyNode = $.isNode() ? require('./YouthCookie.js') : '';
-
+    if (process.env.YOUTH_HEADER && process.env.YOUTH_HEADER.split('#') && process.env.YOUTH_HEADER.split('#').length > 0) {
+  CookieYouth = process.env.YOUTH_HEADER.split('#');
+  }
+if (process.env.YOUTH_ARTBODY && process.env.YOUTH_ARTBODY.split('&') && process.env.YOUTH_ARTBODY.split('&').length > 0) {
+  ARTBODYs = process.env.YOUTH_ARTBODY.split('&');
+  }
+if (process.env.YOUTH_REDBODY && process.env.YOUTH_REDBODY.split('&') && process.env.YOUTH_REDBODY.split('&').length > 0) {
+  REDBODYs = process.env.YOUTH_REDBODY.split('&');
+  }
+if (process.env.YOUTH_TIME && process.env.YOUTH_TIME.split('&') && process.env.YOUTH_TIME.split('&').length > 0) {
+  READTIME = process.env.YOUTH_TIME.split('&');
+  }
+  
+for (let i = 0; i < CookieYouth.length; i++) {
+  const index = (i + 1 === 1) ? '' : (i + 1);
+  exports['youthheader_zq'] = CookieYouth[i];
+  exports['read_zq'] = ARTBODYs[i];
+  exports['red_zq'] = REDBODYs[i];
+  exports['readtime_zq'] = READTIME[i];
+ }
+}
     
 if ($.isNode()) {
-    Object.keys(YtCookieNode).forEach((item) => {
-        if (YtCookieNode[item]) {
-          cookiesArr.push(YtCookieNode[item])
+    Object.keys(CookieYouth).forEach((item) => {
+        if (CookieYouth[item]) {
+          cookiesArr.push(CookieYouth[item])
         }
       })
-    Object.keys(ReadbodyNode).forEach((item) => {
-        if (ReadbodyNode[item]) {
-          readArr.push(ReadbodyNode[item])
+    Object.keys(ARTBODYs).forEach((item) => {
+        if (ARTBODYs[item]) {
+          readArr.push(ARTBODYs[item])
         }
       })
-    Object.keys(RedbodyNode).forEach((item) => {
-        if (RedbodyNode[item]) {
-          redpArr.push(RedbodyNode[item])
+    Object.keys(REDBODYs).forEach((item) => {
+        if (REDBODYs[item]) {
+          redpArr.push(REDBODYs[item])
         }
       })
-    Object.keys(timebodyNode).forEach((item) => {
-        if (timebodyNode[item]) {
-          timeArr.push(timebodyNode[item])
+    Object.keys(READTIME).forEach((item) => {
+        if (READTIME[item]) {
+          timeArr.push(READTIME[item])
         }
       })
     } else {
