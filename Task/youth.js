@@ -73,12 +73,19 @@ const YOUTH_HOST = "https://kd.youth.cn/WebApi/";
 const notify = $.isNode() ? require('./sendNotify') : '';
 let logs = $.getdata('zqlogs')||false, signresult; 
 //let signheaderVal = $.getdata('youthheader_zq');
-let timebodyVal = $.getdata('readtime_zq');
-let articlebodyVal = $.getdata('read_zq');
-let redpbodyVal = $.getdata('red_zq');
-let cookiesArr = [], signheaderVal = '';
+//let timebodyVal = $.getdata('readtime_zq');
+//let articlebodyVal = $.getdata('read_zq');
+//let redpbodyVal = $.getdata('red_zq');
+let cookiesArr = [], signheaderVal = '',
+    readArr = [], articlebodyVal ='',
+    timeArr = [], timebodyVal = '',
+    redpArr = [], redpbodyVal = '';
 
 const YtCookieNode = $.isNode() ? require('./YouthCookie.js') : '';
+const ReadbodyNode = $.isNode() ? require('./YouthCookie.js') : '';
+const RedbodyNode = $.isNode() ? require('./YouthCookie.js') : '';
+const timebodyNode = $.isNode() ? require('./YouthCookie.js') : '';
+
     
 if ($.isNode()) {
     Object.keys(YtCookieNode).forEach((item) => {
@@ -86,9 +93,29 @@ if ($.isNode()) {
           cookiesArr.push(YtCookieNode[item])
         }
       })
+    Object.keys(ReadbodyNode).forEach((item) => {
+        if (ReadbodyNode[item]) {
+          readArr.push(ReadbodyNode[item])
+        }
+      })
+    Object.keys(RedbodyNode).forEach((item) => {
+        if (RedbodyNode[item]) {
+          redpArr.push(RedbodyNode[item])
+        }
+      })
+    Object.keys(timebodyNode).forEach((item) => {
+        if (timebodyNode[item]) {
+          timeArr.push(timebodyNode[item])
+        }
+      })
     } else {
     cookiesArr.push($.getdata('youthheader_zq'));
+    redpArr.push($.getdata('red_zq'));
+    readArr.push($.getdata('read_zq'));
+    timeArr.push($.getdata('readtime_zq'));
 }
+
+
 
 const firstcheck = $.getdata('signt');
 const runtimes = $.getdata('times');
