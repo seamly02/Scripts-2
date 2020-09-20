@@ -80,7 +80,6 @@ let cookiesArr = [], signheaderVal = '';
 
 const YtCookieNode = $.isNode() ? require('./YouthCookie.js') : '';
     
-
 if ($.isNode()) {
     Object.keys(YtCookieNode).forEach((item) => {
         if (YtCookieNode[item]) {
