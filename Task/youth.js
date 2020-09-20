@@ -16,7 +16,6 @@
 5.非专业人士制作，欢迎各位大佬提出宝贵意见和指导
 6.更新日志: 
  31/05 v1.01 取消激励视频Cookie，添加阅读时长
-
 阅读奖励和看视频得奖励一个请求只能运行三次‼️，请不要询问为什么，次日可以继续
 
 by Macsuny
@@ -84,7 +83,6 @@ let CookieYouth = [
     REDBODYs  = ['', ''],
     READTIME = ['', ''];
 if ($.isNode()) {
-
     if (process.env.YOUTH_HEADER && process.env.YOUTH_HEADER.split('#') && process.env.YOUTH_HEADER.split('#').length > 0) {
   CookieYouth = process.env.YOUTH_HEADER.split('#');
   }
@@ -97,14 +95,6 @@ if (process.env.YOUTH_REDBODY && process.env.YOUTH_REDBODY.split('&') && process
 if (process.env.YOUTH_TIME && process.env.YOUTH_TIME.split('&') && process.env.YOUTH_TIME.split('&').length > 0) {
   READTIME = process.env.YOUTH_TIME.split('&');
   }
-  
-for (let i = 0; i < CookieYouth.length; i++) {
-  const index = (i + 1 === 1) ? '' : (i + 1);
-  exports['youthheader_zq'] = CookieYouth[i];
-  exports['read_zq'] = ARTBODYs[i];
-  exports['red_zq'] = REDBODYs[i];
-  exports['readtime_zq'] = READTIME[i];
- }
 }
     
 if ($.isNode()) {
@@ -161,7 +151,6 @@ if (isGetCookie = typeof $request !== 'undefined') {
   }
   await sign();
   await signInfo();
- console.log("\n开始每日任务 ⛳️");
   await Invitant();
 if($.time('HH')>12){
   await punchCard()
@@ -178,7 +167,7 @@ if (boxres.code == 1){
  }
   await getAdVideo();
   await gameVideo();
-if(runtimes<8){
+if(runtimes<15){
   await readArticle();
 }
   await Articlered();
@@ -233,7 +222,8 @@ function sign() {
                 $.msg($.name, signresult, "");
                 return;
             } else if (signres.status == 1) {
-                detail = `【签到结果】成功 🎉 金币: +${signres.score}，明日金币: +${signres.nextScore}\n`
+                 signresult = `【签到结果】成功 🎉 明日+${signres.nextScore} `
+                //detail = `【签到结果】成功 🎉 青豆: +${signres.score}，明日青豆: +${signres.nextScore}\n`
                 $.setdata(1,'times')
               if(firstcheck==undefined||firstcheck!=date){
                 $.setdata(date,'signt');
@@ -258,15 +248,13 @@ function signInfo() {
             headers: JSON.parse(signheaderVal),
         }
         $.post(infourl, (error, response, data) => {
-       
             signinfo = JSON.parse(data);
-  //console.log(signinfo)
             if (signinfo.status == 1) {
               cash = signinfo.data.user.money
                 subTitle = `【收益总计】${signinfo.data.user.score}青豆  现金约${cash}元`;
                 nick = `账号: ${signinfo.data.user.nickname}`;
-                detail = `${signresult}(+${signinfo.data.sign_score}青豆) 已连签: ${signinfo.data.sign_day}天`;
-              $.log(subTitle+'\n'+detail)
+                detail = `${signresult}(今天+${signinfo.data.sign_score}青豆) 已连签${signinfo.data.sign_day}天`;
+          //  $.log(subTitle+'\n'+detail)
               detail +='\n<本次收益>：\n'
             } else {
                 subTitle = `${signinfo.msg}`;
@@ -285,7 +273,6 @@ function punchCard() {
             headers: JSON.parse(signheaderVal),
         }
         $.post(url, (error, response, data) => {
-          //$.log(`每日开启打卡`);
             punchcardstart = JSON.parse(data);
             if (punchcardstart.code == 1) {
                 detail += `【打卡报名】打卡报名${punchcardstart.msg} ✅ \n`;
@@ -345,7 +332,6 @@ function Cardshare() {
                         shareres = JSON.parse(data)
                         if (shareres.code == 1) {
                             detail += `+${shareres.data.score}青豆\n`
-                        $.log(`【打卡分享】成功，获得`+shareres.data.score+"个青豆")
                         } else {
                             //detail += `【打卡分享】${shareres.msg}\n`
                          //$.log(`${shareres.msg}`)
@@ -372,7 +358,6 @@ function openbox() {
                   boxretime = boxres.data.time
                   $.setdata(boxretime, 'opbox')
                     detail += `【开启宝箱】+${boxres.data.score}青豆 下次奖励${boxres.data.time / 60}分钟\n`
-                     $.log(`开启时段宝箱成功，获得`+boxres.data.score+`个青豆，${boxretime / 60}`+"后开启下一个宝箱")
                 }else{
                     //detail += `【开启宝箱】${boxres.msg}\n`
                    // $.log(`${boxres.msg}`)
@@ -396,7 +381,6 @@ function boxshare() {
                 shareres = JSON.parse(data)
                 if (shareres.code == 1) {
                     detail += `【宝箱分享】+${shareres.data.score}青豆\n`
-                   $.log(`分享宝箱任务成功，获得${shareres.data.score}青豆`)
                 }else{
                     //detail += `【宝箱分享】${shareres.msg}\n`
                   //$.log(`${shareres.msg}`)
@@ -449,7 +433,6 @@ function getAdVideo() {
             adVideores = JSON.parse(data)
             if (adVideores.status == 1) {
                 detail += `【观看视频】+${adVideores.score}个青豆\n`
-                 $.log("获得"+adVideores.score+"个青豆")
             }
             resolve()
         })
@@ -466,7 +449,6 @@ function gameVideo() {
             gameres = JSON.parse(data)
             if (gameres.success == true) {
                 detail += `【激励视频】${gameres.items.score}\n`
-                $.log("获得"+gameres.items.score)
             }else{
                 if(gameres.error_code == "10003"){
                     //detail += `【激励视频】${gameres.message}\n`
@@ -487,13 +469,14 @@ function readArticle() {
         }
         $.post(url, (error, response, data) => {
             readres = JSON.parse(data);
+   $.log(data)
             if (readres.items.read_score !== undefined) {
               detail += `【阅读奖励】+${readres.items.read_score}个青豆\n`;
-              $.log("本次阅读获得"+readres.items.read_score+"个青豆")
             } 
     //else if (readres.items.max_notice == '\u770b\u592a\u4e45\u4e86\uff0c\u63621\u7bc7\u8bd5\u8bd5') {
               //detail += `【阅读奖励】看太久了，换1篇试试\n`;
-        //   $.log(readres.items.max_notice)}
+         //  $.log(readres.items.max_notice)}
+
             resolve()
         })
     })
@@ -509,7 +492,6 @@ function Articlered() {
             redres = JSON.parse(data)
             if (redres.success == true) {
                 detail += `【惊喜红包】+${redres.items.score}个青豆\n`
-               $.log("惊喜红包获得"+redres.items.score+"个青豆")
             }else{
                 if(redres.error_code == "100001"){
                     //detail += `【惊喜红包】${redres.message}\n`
@@ -537,14 +519,12 @@ function rotary() {
                 if (rotaryres.status == 1) {
                     rotarytimes = rotaryres.data.remainTurn
                     detail += `【转盘抽奖】+${rotaryres.data.score}个青豆 剩余${rotaryres.data.remainTurn}次\n`
-                    $.log("转盘抽奖获得"+rotaryres.data.score+"个青豆，转盘次数还有"+rotarytimes+"次")
                     if (rotaryres.data.doubleNum != 0) {
                       await TurnDouble();
                     }
                 }
                 if (rotaryres.code == 10010) {
                     rotarynum = ` 转盘${rotaryres.msg}🎉`
-                 $.log("转盘任务已全部完成")
                 }
                 resolve();
             })
@@ -583,7 +563,6 @@ function runRotary(index) {
             const rotaryresp = JSON.parse(data);
             if (rotaryresp.status == 1) {
                 detail += `【转盘宝箱${index}】+${rotaryresp.data.score}个青豆\n`;
-              $.log("开启宝箱"+index+"，获得"+rotaryresp.data.score+"个青豆")
             }else{
                 if(rotaryresp.code == "10010"){
                     detail += `【转盘宝箱${index}】+今日抽奖完成\n`;
@@ -611,7 +590,6 @@ function TurnDouble() {
                 Doubleres = JSON.parse(data)
                 if (Doubleres.status == 1) {
                     detail += `【转盘双倍】+${Doubleres.data.score1}青豆 剩余${rotaryres.data.doubleNum}次\n`
-                  $.log(`转盘双倍奖励成功，获得${Doubleres.data.score1}青豆`)
                 }else{
                     //detail += `【转盘双倍】失败 ${Doubleres.msg}\n`
      
@@ -636,7 +614,6 @@ function readTime() {
             if (timeres.error_code == 0) {
                 readtimes = timeres.time / 60
                 detail += `【阅读时长】共计` + Math.floor(readtimes) + `分钟\n`
-                $.log(`共计阅读时长为`+Math.floor(readtimes)+"分钟")
             } else {
                 if (timeres.error_code == 200001) {
                     detail += `【阅读时长】❎ 未获取阅读时长Cookie\n`
