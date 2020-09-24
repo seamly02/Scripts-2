@@ -8,7 +8,7 @@
 
 */
 
-let s = 30000 //等待延迟
+let s = 10000 //等待延迟
 const $ = new Env("中青看点")
 //const notify = $.isNode() ? require('./sendNotify') : '';
 let ReadArr = [], articlebody ='';
