@@ -8,7 +8,7 @@
 
 */
 
-let s = 500 //等待延迟
+let s = 30000 //等待延迟
 const $ = new Env("中青看点")
 //const notify = $.isNode() ? require('./sendNotify') : '';
 let ReadArr = [], articlebody ='';
@@ -58,7 +58,7 @@ function AutoRead() {
            let readres = JSON.parse(data);
              console.log(data)
             if (readres.items.read_score) {
-              console.log(`本次阅读获得${readres.items.read_score}个青豆，即将开始下次阅读\n`)
+              console.log(`\n本次阅读获得${readres.items.read_score}个青豆，即将开始下次阅读\n`)
             } 
           resolve()
         })
