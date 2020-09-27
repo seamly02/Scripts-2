@@ -15,13 +15,12 @@ if ($.isNode()) {
     Object.keys(miduCookie).forEach((item) => {
         if (miduCookie[item]) {
           cookiesArr.push(miduCookie[item])
-          console.log(cookiesArr)
+       
         }
       })
     Object.keys(miduBodys).forEach((item) => {
         if (miduBodys[item]) {
           BodyArr.push(miduBodys[item])
-          console.log(BodyArr)
         }
     })
   } else {
@@ -30,6 +29,7 @@ if ($.isNode()) {
 }
 
 !(async () => {
+   console.log(cookiesArr)
   if (!cookieArr[0]){
     $.msg($.name, '【提示】米读一cookie');
     return;
