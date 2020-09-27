@@ -63,6 +63,7 @@ function readTime() {
     headers: {'token' : tokenVal,'User-Agent':'MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0'},
     body: bodyVal
     }
+    console.log(request)
         $.post(request, (error, response, data) => {
             try {
                 $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
