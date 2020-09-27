@@ -67,13 +67,13 @@ function readTime() {
         $.post(request, (error, response, data) => {
             try {
                 $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
-                readTime = JSON.parse(data)
+                readtime = JSON.parse(data)
                 let subTitle = ''
                 let detail = ''
-                if (readTime && readTime.code == 0) {
-                    const coin = readTime.data.coin
-                    const readTotalMinute = readTime.data.readTotalMinute
-                    const total_coin = readTime.data.total_coin
+                if (readtime && readtime.code == 0) {
+                    const coin = readtime.data.coin
+                    const readTotalMinute = readtime.data.readTotalMinute
+                    const total_coin = readtime.data.total_coin
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
                     if (readTotalMinute % 20 == 0) {
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
@@ -83,7 +83,7 @@ function readTime() {
                         $.msg(cookieName, subTitle, detail)
                     }
                 } else if (readTime.code != 0) {
-                    detail += `【阅读时长】错误代码${readTime.code},错误信息${readTime.message}`
+                    detail += `【阅读时长】错误代码${readtime.code},错误信息${readtime.message}`
                     $.msg(cookieName, subTitle, detail)
                 } else {
                     detail += '【阅读时长】失败'
