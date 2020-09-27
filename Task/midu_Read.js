@@ -29,6 +29,7 @@ if ($.isNode()) {
   } else {
                  cookiesArr.push($.getdata('tokenMidu_read'));
   BodyArr.push($.getdata('senku_readTimebody_midu'));
+   }
  }
 
 (sign = async () => {
@@ -51,7 +52,6 @@ if ($.isNode()) {
     url: url,
     headers: {'token' : tokenVal,'User-Agent':'MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0'},
     body: bodyVal
-}
     }
     $.log(`🔔 ${cookieName}`)
     await readTime()
