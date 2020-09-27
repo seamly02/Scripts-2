@@ -67,13 +67,13 @@ function readTime() {
         $.post(request, (error, response, data) => {
             try {
                 $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
-                signinfo.readTime = JSON.parse(data)
+                readTime = JSON.parse(data)
                 let subTitle = ''
                 let detail = ''
-                if (signinfo.readTime && signinfo.readTime.code == 0) {
-                    const coin = signinfo.readTime.data.coin
-                    const readTotalMinute = signinfo.readTime.data.readTotalMinute
-                    const total_coin = signinfo.readTime.data.total_coin
+                if (readTime && readTime.code == 0) {
+                    const coin = readTime.data.coin
+                    const readTotalMinute = readTime.data.readTotalMinute
+                    const total_coin = readTime.data.total_coin
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
                     if (readTotalMinute % 20 == 0) {
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
@@ -82,8 +82,8 @@ function readTime() {
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
                         $.msg(cookieName, subTitle, detail)
                     }
-                } else if (signinfo.readTime.code != 0) {
-                    detail += `【阅读时长】错误代码${signinfo.readTime.code},错误信息${signinfo.readTime.message}`
+                } else if (readTime.code != 0) {
+                    detail += `【阅读时长】错误代码${readTime.code},错误信息${readTime.message}`
                     $.msg(cookieName, subTitle, detail)
                 } else {
                     detail += '【阅读时长】失败'
