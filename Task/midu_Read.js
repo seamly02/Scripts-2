@@ -60,10 +60,11 @@ function readTime() {
   return new Promise((resolve, reject) => {
     let request = {
     url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
-    headers: {'User-Agent' : `MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0`, 'token' : tokenVal},
-    body: bodyVal
+    headers: {'User-Agent' : `MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0`, 'token' : tokenVal,
+    'mobile-brand': 'iPhone'
+    },
+    body: bodyVal,
     }
-    console.log(request)
         $.post(request, (error, response, data) => {
             try {
                 $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
