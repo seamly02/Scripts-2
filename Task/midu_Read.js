@@ -1,7 +1,5 @@
 
-const url = "https://apiwz.midukanshu.com/user/readTimeBase/readTime"
 const cookieName = '米读阅读时长'
-const signinfo = {}
 const $ = new Env(cookieName)
 // 开启debug模式,每次脚本执行会显示通知,默认false
 const debug = false
@@ -29,10 +27,9 @@ if ($.isNode()) {
   } else {
                  cookiesArr.push($.getdata('tokenMidu_read'));
   BodyArr.push($.getdata('senku_readTimebody_midu'));
-   }
- }
+}
 
-(sign = async () => {
+!(async () => {
   if (!cookieArr[0]){
     $.msg($.name, '【提示】米读一cookie');
     return;
@@ -48,16 +45,17 @@ if ($.isNode()) {
       bodyVal = BodyArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
-  const request = {
-    url: url,
+  let request = {
+    url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
     headers: {'token' : tokenVal,'User-Agent':'MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0'},
     body: bodyVal
     }
     $.log(`🔔 ${cookieName}`)
     await readTime()
-    $.done()
-  }
-})().catch((e) => $.log(`❌ ${cookieName} 签到失败: ${e}`), $.done())
+   }
+ }
+})()
+  .catch((e) => $.log(`❌ ${cookieName} 签到失败: ${e}`))
 
 
 // 阅读时长
