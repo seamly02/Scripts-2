@@ -47,11 +47,6 @@ if ($.isNode()) {
       bodyVal = BodyArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
-  let request = {
-    url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
-    headers: {'token' : tokenVal,'User-Agent':'MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0'},
-    body: bodyVal
-    }
     $.log(`🔔 ${cookieName}`)
     await readTime()
    }
@@ -62,7 +57,12 @@ if ($.isNode()) {
 
 // 阅读时长
 function readTime() {
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
+    let request = {
+    url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
+    headers: {'token' : tokenVal,'User-Agent':'MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0'},
+    body: bodyVal
+    }
         $.post(request, (error, response, data) => {
             try {
                 $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
