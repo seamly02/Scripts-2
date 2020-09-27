@@ -11,17 +11,19 @@ if ($.isNode()) {
   if (process.env.MIDU_COOKIE && process.env.MIDU_COOKIE.split('&') && process.env.MIDU_COOKIE.split('&').length > 0) {
   miduCookie = process.env.MIDU_COOKIE.split('&');
   }
- if (process.env.MIDU_BODY && process.env.MIDU_BODY.split('#') && process.env.MIDU_BODY.split('#').length > 0) {
-  miduBodys = process.env.MIDU_BODY.split('#');
+ if (process.env.MIDU_BODY && process.env.MIDU_BODY.split('&') && process.env.MIDU_BODY.split('&').length > 0) {
+  miduBodys = process.env.MIDU_BODY.split('&');
   }
     Object.keys(miduCookie).forEach((item) => {
         if (miduCookie[item]) {
           cookiesArr.push(miduCookie[item])
+          console.log(cookiesArr)
         }
       })
     Object.keys(miduBodys).forEach((item) => {
         if (miduBodys[item]) {
           BodyArr.push(miduBodys[item])
+          console.log(BodyArr)
         }
     })
   } else {
@@ -45,7 +47,7 @@ if ($.isNode()) {
       bodyVal = BodyArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
-    const request = {
+  const request = {
     url: url,
     headers: {'token' : tokenVal,'User-Agent':'MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0'},
     body: bodyVal
