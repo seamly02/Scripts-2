@@ -41,7 +41,7 @@ if ($.isNode()) {
      };
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
-      tokenVal = cookiesArr[i];
+      headerVal = cookiesArr[i];
       bodyVal = BodyArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
@@ -58,7 +58,7 @@ function readTime() {
   return new Promise((resolve, reject) => {
     let request = {
     url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
-    headers: {'User-Agent' : `MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0`, 'token' : tokenVal,
+    headers: JSON.parse(headerVal), 'token' : tokenVal,
     'mobile-brand': 'iPhone',
     'device': '3F2C0D55-D847-406E-9E24-D0D1C908D8C9',
     },
