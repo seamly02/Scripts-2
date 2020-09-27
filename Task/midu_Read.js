@@ -29,10 +29,12 @@ if ($.isNode()) {
 }
 
 !(async () => {
+    console.log(cookiesArr[0])
   if (!cookieArr[0]){
-    $.msg($.name, '【提示】米读一cookie');
-    return;
-  };
+    $.msg($.name, '【提示】米读一cookie'),
+    console.log($.name, '【提示】米读一cookie'),
+    return
+  }
       console.log(cookiesArr)
   if ($.isNode()){
       console.log(`\n============ 脚本执行来自 Github Action  ==============\n`)
