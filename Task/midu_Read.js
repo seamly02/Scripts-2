@@ -40,9 +40,7 @@ if ($.isNode()) {
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}=============\n`)
      };
   for (let i = 0; i < cookiesArr.length; i++) {
-       console.log(i)
     if (cookiesArr[i]) {
-    
       tokenVal = cookiesArr[i];
       bodyVal = BodyArr[i];
       $.index = i + 1;
@@ -61,7 +59,8 @@ function readTime() {
     let request = {
     url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
     headers: {'User-Agent' : `MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0`, 'token' : tokenVal,
-    'mobile-brand': 'iPhone'
+    'mobile-brand': 'iPhone',
+    'device': '3F2C0D55-D847-406E-9E24-D0D1C908D8C9',
     },
     body: bodyVal,
     }
