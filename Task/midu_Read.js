@@ -87,6 +87,7 @@ function readTime() {
 },
     body: bodyVal
     }
+  console.log(url)
         $.post(url, (error, response, data) => {
             try {
                 $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
