@@ -56,13 +56,38 @@ if ($.isNode()) {
 // 阅读时长
 function readTime() {
   return new Promise((resolve, reject) => {
-    let request = {
+    let url = {
     url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
-    headers: {'token' : tokenVal,'User-Agent' : `MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0`,'mobile-brand': 'iPhone',
-    },
-    body: bodyVal,
+    headers: {
+'Accept-Encoding' : `gzip`,
+'asVersion' : `3`,
+'Host' : `apiwz.midukanshu.com`,
+'device' : ``,
+'idfa' : ``,
+'headerQueryTime' : ``,
+'tk' : ``,
+'versionName' : `1.24.0.0918.1649`,
+'mobile-model' : `iPhone 6s Plus`,
+'lon' : `0`,
+'Connection' : `keep-alive`,
+'mobile-brand' : `iPhone`,
+'dtu' : `iOS`,
+'Accept-Language' : `zh-cn`,
+'version' : `102400`,
+'luid' : ``,
+'User-Agent' : `MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0`,
+'tuid' : ``,
+'Content-Type' : ``,
+'token' : `${tokenVal}`,
+'Accept' : `application/json`,
+'network' : ``,
+'lat' : `0`,
+'os-version' : `13.7`,
+'app' : `mdwz`
+},
+    body: bodyVal
     }
-        $.post(request, (error, response, data) => {
+        $.post(url, (error, response, data) => {
             try {
                 $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
                 readtime = JSON.parse(data)
