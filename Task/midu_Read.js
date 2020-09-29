@@ -10,8 +10,8 @@ if ($.isNode()) {
  if (process.env.MIDU_BODY && process.env.MIDU_BODY.split('&') && process.env.MIDU_BODY.split('&').length > 0) {
   miduBodys = process.env.MIDU_BODY.split('&');
   }
-  if (process.env.MIDU_DRAW && process.env.MIDU_DRAW.split('&') && process.env.MIDU_DRAW.split('&').length > 0) {
-  DrawBodys = process.env.MIDU_DRAW.split('&');
+  if (process.env.MIDU_DRAW && process.env.MIDU_DRAW.split('#') && process.env.MIDU_DRAW.split('#').length > 0) {
+  DrawBodys = process.env.MIDU_DRAW.split('#');
   }
     Object.keys(miduCookie).forEach((item) => {
         if (miduCookie[item]) {
