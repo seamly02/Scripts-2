@@ -61,7 +61,7 @@ function readTime() {
   return new Promise((resolve, reject) => {
     let request = {
     url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
-    headers: {'token' : tokenVal,'User-Agent' : `MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0`,'mobile-brand': 'iPhone',
+    headers: {'token' : tokenVal,'User-Agent' : `MRSpeedNovel/0918.1649 CFNetwork/1128.0.1 Darwin/19.6.0`,'mobile-brand': 'iPhone','Content-Type': 'application/x-www-form-urlencoded'
     },
     body: bodyVal,
     }
@@ -104,14 +104,15 @@ function readTime() {
 }
 function drawPrize(bodyVal) {
     return new Promise((resolve, reject) => {
-        const drawPrizeurlVal = 'https://apiwz.midukanshu.com/wz/task/drawPrize?' + bodyVal
+        const drawPrizeurlVal = 'https://apiwz.midukanshu.com/wz/task/drawPrize'
         const url = {
             url: drawPrizeurlVal,
-            headers: {}
+            headers: {},
+            body: tokenVal
         }
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-        url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+        url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(response)}`)
@@ -132,11 +133,12 @@ function drawPrize(bodyVal) {
 // 观看视频获取抽奖机会
 function prizeTask(bodyVal) {
     return new Promise((resolve, reject) => {
-        const prizeTaskurlVal = 'https://apiwz.midukanshu.com/wz/task/prizeTask?' + bodyVal
+        const prizeTaskurlVal = 'https://apiwz.midukanshu.com/wz/task/prizeTask'
         const url = {
             url: prizeTaskurlVal,
-            headers: {}
-        }
+            headers: {},
+            body: tokenVal       
+       }
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
@@ -160,10 +162,11 @@ function prizeTask(bodyVal) {
 // 抽奖信息
 function prizeInfo(bodyVal) {
     return new Promise((resolve, reject) => {
-        const prizeInfourlVal = 'https://apiwz.midukanshu.com/wz/task/prizeList?' + bodyVal
+        const prizeInfourlVal = 'https://apiwz.midukanshu.com/wz/task/prizeList'
         const url = {
             url: prizeInfourlVal,
-            headers: {}
+            headers: {},
+            body: tokenVal
         }
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
