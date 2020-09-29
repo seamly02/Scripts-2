@@ -10,20 +10,27 @@ if ($.isNode()) {
  if (process.env.MIDU_BODY && process.env.MIDU_BODY.split('&') && process.env.MIDU_BODY.split('&').length > 0) {
   miduBodys = process.env.MIDU_BODY.split('&');
   }
+  if (process.env.MIDU_DRAW && process.env.MIDU_DRAW.split('&') && process.env.MIDU_DRAW.split('&').length > 0) {
+  DrawBodys = process.env.MIDU_DRAW.split('&');
+  }
     Object.keys(miduCookie).forEach((item) => {
         if (miduCookie[item]) {
           cookiesArr.push(miduCookie[item])
-       
         }
       })
     Object.keys(miduBodys).forEach((item) => {
         if (miduBodys[item]) {
           BodyArr.push(miduBodys[item])
         }
+    Object.keys(DrawBodys).forEach((item) => {
+        if (DrawBodys[item]) {
+          DrawArr.push(DrawBodys[item])
+        }
     })
   } else {
                  cookiesArr.push($.getdata('tokenMidu_read'));
   BodyArr.push($.getdata('senku_readTimebody_midu'));
+DrawArr.push($.getdata('senku_signbody_midu'));
 }
 
 !(async () => {
@@ -41,6 +48,7 @@ if ($.isNode()) {
     if (BodyArr[i]) {
       tokenVal = cookiesArr[i];
       bodyVal = BodyArr[i];
+      drawVal = DrawArr[i];
       //console.log(bodyVal)
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
@@ -107,7 +115,7 @@ function drawPrize(bodyVal) {
         const url = {
             url: drawPrizeurlVal,
             headers: {},
-            body: tokenVal
+            body: drawVal
         }
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -136,7 +144,7 @@ function prizeTask(bodyVal) {
         const url = {
             url: prizeTaskurlVal,
             headers: {},
-            body: tokenVal       
+            body: drawVal       
        }
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -165,7 +173,7 @@ function prizeInfo(bodyVal) {
         const url = {
             url: prizeInfourlVal,
             headers: {},
-            body: tokenVal
+            body: drawVal
         }
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
