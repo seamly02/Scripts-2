@@ -57,7 +57,9 @@ DrawArr.push($.getdata('senku_signbody_midu'))
     await readTime();
     await drawPrize();
     await prizeTask();
-    await prizeInfo()
+    await prizeInfo();
+    await dice_roll();
+    await dice_double();
    }
  }
 })()
