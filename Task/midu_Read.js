@@ -39,7 +39,7 @@ if ($.isNode()) {
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}=============\n`)
      };
-  for (let i = 0; i < cookiesArr.length; i++) {
+  for (let i = 0; i < BodyArr.length; i++) {
     if (cookiesArr[i]) {
       tokenVal = cookiesArr[i];
       bodyVal = BodyArr[i];
