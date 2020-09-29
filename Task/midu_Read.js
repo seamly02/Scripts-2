@@ -1,7 +1,7 @@
 
 const cookieName = '米读阅读时长'
 const $ = new Env(cookieName)
-let cookiesArr = [], BodyArr = [];
+let cookiesArr = [], BodyArr = [],DrawArr= [];
 
 if ($.isNode()) {
   if (process.env.MIDU_COOKIE && process.env.MIDU_COOKIE.split('&') && process.env.MIDU_COOKIE.split('&').length > 0) {
@@ -22,6 +22,7 @@ if ($.isNode()) {
         if (miduBodys[item]) {
           BodyArr.push(miduBodys[item])
         }
+      })
     Object.keys(DrawBodys).forEach((item) => {
         if (DrawBodys[item]) {
           DrawArr.push(DrawBodys[item])
@@ -30,7 +31,7 @@ if ($.isNode()) {
   } else {
                  cookiesArr.push($.getdata('tokenMidu_read'));
   BodyArr.push($.getdata('senku_readTimebody_midu'));
-DrawArr.push($.getdata('senku_signbody_midu'));
+DrawArr.push($.getdata('senku_signbody_midu'))
 }
 
 !(async () => {
