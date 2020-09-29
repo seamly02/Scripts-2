@@ -40,9 +40,11 @@ if ($.isNode()) {
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}=============\n`)
      };
   for (let i = 0; i < BodyArr.length; i++) {
+  console.log(i)
     if (cookiesArr[i]) {
       tokenVal = cookiesArr[i];
       bodyVal = BodyArr[i];
+      console.log(bodyVal)
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
     $.log(`🔔 ${cookieName}`)
