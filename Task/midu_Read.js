@@ -41,7 +41,7 @@ if ($.isNode()) {
      };
       console.log(BodyArr)
   for (let i = 0; i < BodyArr.length; i++) {
-    if (cookiesArr[i]) {
+    if (BodyArr[i]) {
       tokenVal = cookiesArr[i];
       bodyVal = BodyArr[i];
       //console.log(bodyVal)
