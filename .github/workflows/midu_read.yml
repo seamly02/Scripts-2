@@ -6,7 +6,7 @@ name: midu_read
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/15 19 * * *'
+     - cron: '*/6 1-18 * * *'
 
 jobs:
   build:
