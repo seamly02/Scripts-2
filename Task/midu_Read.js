@@ -110,7 +110,7 @@ function readTime() {
         })
     })
 }
-function drawPrize(bodyVal) {
+function drawPrize() {
     return new Promise((resolve, reject) => {
         const drawPrizeurlVal = 'https://apiwz.midukanshu.com/wz/task/drawPrize'
         const url = {
@@ -139,7 +139,7 @@ function drawPrize(bodyVal) {
 }
 
 // 观看视频获取抽奖机会
-function prizeTask(bodyVal) {
+function prizeTask() {
     return new Promise((resolve, reject) => {
         const prizeTaskurlVal = 'https://apiwz.midukanshu.com/wz/task/prizeTask'
         const url = {
@@ -150,7 +150,6 @@ function prizeTask(bodyVal) {
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
-        console.log(url)
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} prizeTask - response: ${JSON.stringify(response)}`)
@@ -169,7 +168,7 @@ function prizeTask(bodyVal) {
 }
 
 // 抽奖信息
-function prizeInfo(bodyVal) {
+function prizeInfo() {
     return new Promise((resolve, reject) => {
         const prizeInfourlVal = 'https://apiwz.midukanshu.com/wz/task/prizeList'
         const url = {
@@ -197,6 +196,63 @@ function prizeInfo(bodyVal) {
     })
 }
 
+// 掷骰子
+function dice_roll() {
+    return new Promise((resolve, reject) => {
+        const dice_roll_urlVal = 'https://apiwz.midukanshu.com/wz/dice/roll'
+        const url = {
+            url: dice_roll_urlVal,
+            headers: {},
+            body: drawVal
+        }
+        url.headers['Host'] = 'apiwz.midukanshu.com'
+        url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+        $.post(url, (error, response, data) => {
+            try {
+                $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(response)}`)
+                if (JSON.parse(data).code == 0) {
+                    rollList=JSON.parse(data)
+                }
+                resolve()
+            } catch (e) {
+                $.msg(cookieName, `掷骰子: 失败`, `说明: ${e}`)
+                $.log(`❌ ${cookieName} dice_roll - 掷骰子失败: ${e}`)
+                $.log(`❌ ${cookieName} dice_roll - response: ${JSON.stringify(response)}`)
+                resolve()
+            }
+        })
+    })
+}
+
+// 骰子双倍奖励
+function dice_double() {
+    return new Promise((resolve, reject) => {
+        const dice_double_urlVal = 'https://apiwz.midukanshu.com/wz/dice/doubleReward'
+        const url = {
+            url: dice_double_urlVal,
+            headers: {},
+            body: drawVal
+        }
+        url.headers['Host'] = 'apiwz.midukanshu.com'
+        url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+        $.post(url, (error, response, data) => {
+            try {
+                $.log(`🐍🐢 ${cookieName} dice_double - response: ${JSON.stringify(response)}`)
+                if (JSON.parse(data).code == 0) {
+                    doubleList=JSON.parse(data)
+                }
+                resolve()
+            } catch (e) {
+                $.msg(cookieName, `骰子双倍奖励: 失败`, `说明: ${e}`)
+                $.log(`❌ ${cookieName} dice_double - 骰子双倍奖励失败: ${e}`)
+                $.log(`❌ ${cookieName} dice_double - response: ${JSON.stringify(response)}`)
+                resolve()
+            }
+        })
+    })
+}
 
 
 
