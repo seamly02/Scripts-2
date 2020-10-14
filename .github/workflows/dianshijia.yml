@@ -9,11 +9,11 @@ on:
     types: started
 jobs:
   build:
-    runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
     env:
         DSJ_HEADERS: ${{ secrets.DSJ_HEADERS }}
         DSJ_DRAWAL: ${{ secrets.DSJ_DRAWAL }}
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
