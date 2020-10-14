@@ -2,15 +2,12 @@
 name: jingxi
 
 on:
- #push:
-  #branches: 
-     #- master 
+  workflow_dispatch:
   schedule:
-     - cron: '5 18 * * *'
+     - cron: '5 5 * * *'
   watch:
     types: started
-#jobs:
-
+jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
@@ -32,3 +29,6 @@ on:
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
+          DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
