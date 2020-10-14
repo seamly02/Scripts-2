@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
-        env:  
+      - env:  
            YOUTH_READ: ${{ secrets.YOUTH_READ }}
         if: env.YOUTH_READ
       - uses: actions/checkout@v1
