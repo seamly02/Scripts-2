@@ -8,7 +8,7 @@ on:
   schedule:
      - cron: '*/29 19-23 * * *'
   watch:
-    types: started
+      types: started
 jobs:
   build:
     runs-on: ubuntu-latest
