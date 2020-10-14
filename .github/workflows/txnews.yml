@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 10.x
       - name: npm install
-    if: env.TXNEWS_COOKIE
+        if: env.TXNEWS_COOKIE
         run: |
           npm install
       - name: '运行 【腾讯新闻】'
