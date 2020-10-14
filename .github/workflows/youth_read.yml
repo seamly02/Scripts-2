@@ -20,6 +20,7 @@ jobs:
       YOUTH_READ3: ${{ secrets.YOUTH_READ3 }}
       YOUTH_READ4: ${{ secrets.YOUTH_READ4 }}
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
