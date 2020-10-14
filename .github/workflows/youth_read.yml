@@ -5,10 +5,12 @@ name: youth_read
 
 on:
   workflow_dispatch:
+  
   schedule:
      - cron: '6 1-10/2 * * *'
   watch:
-    types: started
+      types: started
+    
 jobs:
   build:
     runs-on: ubuntu-latest
