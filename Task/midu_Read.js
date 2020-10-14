@@ -4,11 +4,11 @@ const $ = new Env(cookieName)
 let tokenArr = [], TimeArr = [],SignArr= [];
 
 if ($.isNode()) {
-  if (process.env.MIDU_TOKEN && process.env.MIDU_TOKEN.split('&') && process.env.MIDU_TOKEN.split('&').length > 0) {
-  miduToken = process.env.MIDU_COOKIE.split('&');
+  if (process.env.MIDU_TOKEN && process.env.MIDU_TOKEN.split('#') && process.env.MIDU_TOKEN.split('#').length > 0) {
+  miduToken = process.env.MIDU_TOKEN.split('#');
   }
- if (process.env.MIDU_TIME && process.env.MIDU_BODY.split('&') && process.env.MIDU_TIME.split('&').length > 0) {
-  ReadBodys = process.env.MIDU_TIME.split('&');
+ if (process.env.MIDU_TIME && process.env.MIDU_BODY.split('#') && process.env.MIDU_TIME.split('#').length > 0) {
+  ReadBodys = process.env.MIDU_TIME.split('#');
   }
   if (process.env.MIDU_SIGN && process.env.MIDU_SIGN.split('#') && process.env.MIDU_SIGN.split('#').length > 0) {
   SignBodys = process.env.MIDU_SIGN.split('#');
