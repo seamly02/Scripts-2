@@ -188,7 +188,7 @@ function prizeInfo() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-                 $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(response)}`)
+                // $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(response)}`)
                 if (data) {
                     prizeinfo = JSON.parse(data)
                 }
