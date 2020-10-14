@@ -11,18 +11,18 @@ on:
     types: started
 jobs:
   build:
-    runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
     env:
       YOUTH_READ: ${{ secrets.YOUTH_READ }}
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - name: npm install
         if: env.YOUTH_READ
+      - name: npm install
         run: |
           npm install
       - name: '运行 【中青看点自动阅读】'
