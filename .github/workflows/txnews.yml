@@ -20,7 +20,6 @@ jobs:
       TXNEWS_SIGN: ${{ secrets.TXNEWS_SIGN }}
       TXNEWS_COOKIE: ${{ secrets.TXNEWS_COOKIE }}
       TXNEWS_VIDEO: ${{ secrets.TXNEWS_VIDEO }}
-    if: env.TXNEWS_COOKIE
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
@@ -28,6 +27,7 @@ jobs:
         with:
           node-version: 10.x
       - name: npm install
+    if: env.TXNEWS_COOKIE
         run: |
           npm install
       - name: '运行 【腾讯新闻】'
