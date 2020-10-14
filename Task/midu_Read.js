@@ -1,7 +1,7 @@
 
 const cookieName = '米读阅读时长'
 const $ = new Env(cookieName)
-let cookiesArr = [], BodyArr = [],DrawArr= [];
+let tokenArr = [], TimeArr = [],SignArr= [];
 
 if ($.isNode()) {
   if (process.env.MIDU_TOKEN && process.env.MIDU_TOKEN.split('&') && process.env.MIDU_TOKEN.split('&').length > 0) {
@@ -79,7 +79,7 @@ function readTime() {
     }
         $.post(request, (error, response, data) => {
             try {
-               // $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
+                $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
                 readtime = JSON.parse(data)
                 let subTitle = ''
                 let detail = ''
@@ -188,7 +188,7 @@ function prizeInfo() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(response)}`)
+                 $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(response)}`)
                 if (data) {
                     prizeinfo = JSON.parse(data)
                 }
@@ -269,7 +269,7 @@ function signDay() {
         const url = {
             url: signurlVal,
             headers: {},
-            body: tokenVal
+            body: drawVal
         }
         url.headers['token'] = tokenVal
         url.headers['Host'] = 'apiwz.midukanshu.com'
@@ -278,7 +278,7 @@ function signDay() {
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} signDay - response: ${JSON.stringify(response)}`)
-                signinfo.signDay = JSON.parse(data)
+                _signDay = JSON.parse(data)
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `签到结果: 失败`, `说明: ${e}`)
@@ -297,7 +297,7 @@ function signVideo() {
         const url = {
             url: signVideourlVal,
             headers: {},
-            body: tokenVal
+            body: drawVal
         }
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -306,7 +306,7 @@ function signVideo() {
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} signVideo - response: ${JSON.stringify(response)}`)
-                signinfo.signVideo = JSON.parse(data)
+                _signVideo = JSON.parse(data)
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `签到视频: 失败`, `说明: ${e}`)
