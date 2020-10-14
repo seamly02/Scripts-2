@@ -20,9 +20,6 @@ jobs:
         with:
           node-version: 10.x
       - name: npm install
-        env:  
-           YOUTH_READ: ${{ secrets.YOUTH_READ }}
-        if: env.YOUTH_READ
         run: |
           npm install
       - name: '运行 【中青看点自动阅读】'
