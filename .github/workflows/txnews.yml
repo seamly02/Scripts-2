@@ -21,11 +21,11 @@ jobs:
       TXNEWS_SIGN: ${{ secrets.TXNEWS_SIGN }}
       TXNEWS_COOKIE: ${{ secrets.TXNEWS_COOKIE }}
       TXNEWS_VIDEO: ${{ secrets.TXNEWS_VIDEO }}
-     if: env.TXNEWS_COOKIE
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
+     if: env.TXNEWS_COOKIE
         with:
           node-version: 10.x
       - name: npm install
