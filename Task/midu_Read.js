@@ -86,7 +86,7 @@ function readTime() {
     }
         $.post(request, (error, response, data) => {
             try {
-                $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`)
+                $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}`+`\n`)
                 readtime = JSON.parse(data)
                 let subTitle = ''
                 let detail = ''
@@ -95,7 +95,7 @@ function readTime() {
                     const readTotalMinute = readtime.data.readTotalMinute
                     const total_coin = readtime.data.total_coin
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
-                     console.log("总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner)
+                     console.log("总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner+`\n`)
                     if (readTotalMinute) {
       console.log("总计阅读时长"+readTotalMinute / 2+"分钟")
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
@@ -138,7 +138,7 @@ function drawPrize() {
          url.headers['tk'] =`ACI_Pcpc27lK8Y_z9rcY9IZJUOuwRFpono9tZHd6`
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(response)}`)
+                $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(response)}\n`)
                 if (data) {
                     drawprize = JSON.parse(data)
                 }
@@ -166,7 +166,7 @@ function addDraw() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                //$.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(response)}`)
+           .  .$.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(response)}\n`)
                 if (data) {
                     add_Draw = JSON.parse(data)
                 }
@@ -193,7 +193,7 @@ function taskTime() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} taskTime - response: ${JSON.stringify(response)}`)
+                $.log(`🐍🐢 ${cookieName} taskTime - response: ${JSON.stringify(response)}\n`)
                 if (data) {
                     drawprize = JSON.parse(data)
                 }
@@ -224,7 +224,7 @@ function prizeTask() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} prizeTask - response: ${JSON.stringify(response)}`)
+                $.log(`🐍🐢 ${cookieName} prizeTask - response: ${JSON.stringify(response)}\n`)
                 if (data) {
                     prizetask = JSON.parse(data)
                 }
@@ -254,7 +254,7 @@ function prizeInfo() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-                 $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(response)}`)
+                 $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(response)}\n`)
                 if (data) {
                     prizeinfo = JSON.parse(data)
                 }
@@ -283,7 +283,7 @@ function dice_roll() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(response)}`)
+                $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(response)}\n`)
                 if (JSON.parse(data).code == 0) {
                     rollList=JSON.parse(data)
                 }
@@ -313,7 +313,7 @@ function dice_double() {
         url.headers['token'] = tokenVal
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} dice_double - response: ${JSON.stringify(response)}`)
+                $.log(`🐍🐢 ${cookieName} dice_double - response: ${JSON.stringify(response)}\n`)
                 if (JSON.parse(data).code == 0) {
                     doubleList=JSON.parse(data)
                 }
@@ -341,7 +341,7 @@ function signDay() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} signDay - response: ${JSON.stringify(response)}`)
+                $.log(`🐍🐢 ${cookieName} signDay - response: ${JSON.stringify(response)}\n`)
                 _signDay = JSON.parse(data)
                 resolve()
             } catch (e) {
@@ -369,7 +369,7 @@ function signVideo() {
         url.headers['token'] = tokenVal
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} signVideo - response: ${JSON.stringify(response)}`)
+                $.log(`🐍🐢 ${cookieName} signVideo - response: ${JSON.stringify(response)}\n`)
                 _signVideo = JSON.parse(data)
                 resolve()
             } catch (e) {
