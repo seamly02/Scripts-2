@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latestp
+    runs-on: ubuntu-latest
     env:
         YOUTH_HEADER: ${{ secrets.YOUTH_HEADER }}
         YOUTH_ARTBODY: ${{ secrets.YOUTH_ARTBODY }}
