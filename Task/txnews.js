@@ -56,14 +56,20 @@ let SignArr = [],SignUrl = "";
     
 
 if ($.isNode()) {
-  if (process.env.TXNEWS_COOKIE && process.env.TXNEWS_COOKIE.split('&') && process.env.TXNEWS_COOKIE.split('&').length > 0) {
-  CookieTxnews = process.env.TXNEWS_COOKIE.split('&');
-  }
- if (process.env.TXNEWS_SIGN && process.env.TXNEWS_SIGN.split('#') && process.env.TXNEWS_SIGN.split('#').length > 0) {
+  if (process.env.TXNEWS_COOKIE && process.env.TXNEWS_COOKIE.indexOf('&') > -1) {
+      CookieTxnews = process.env.TXNEWS_COOKIE.split('&');
+  } else {
+      CookieTxnews = process.env.TXNEWS_COOKIE.split()
+  };
+  if (process.env.TXNEWS_SIGN && process.env.TXNEWS_SIGN.indexOf('#') > -1) {
   SignUrl = process.env.TXNEWS_SIGN.split('#');
-  }
-  if (process.env.TXNEWS_VIDEO && process.env.TXNEWS_VIDEO.split('#') && process.env.TXNEWS_VIDEO.split('#').length > 0) {
+  } else {
+      SignUrl = process.env.TXNEWS_SIGN.split()
+  };
+  if (process.env.TXNEWS_VIDEO && process.env.TXNEWS_VIDEO.indexOf('#') > -1) {
   VideoUrl = process.env.TXNEWS_VIDEO.split('#');
+  } else {
+      VideoUrl = process.env.TXNEWS_VIDEO.split()
   };
     Object.keys(CookieTxnews).forEach((item) => {
         if (CookieTxnews[item]) {
@@ -81,22 +87,22 @@ if ($.isNode()) {
         }
     })
   } else {
-                cookiesArr.push($.getdata('sy_cookie_txnews'));
-   SignArr.push($.getdata( 'sy_signurl_txnews'));
+      cookiesArr.push($.getdata('sy_cookie_txnews'));
+      SignArr.push($.getdata( 'sy_signurl_txnews'));
       VideoArr.push($.getdata( 'video_txnews'))
   }
 
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
-  GetCookie()
-} else {
+  GetCookie();
+  $.done()
+} 
 !(async () => {
  if(!cookiesArr[0]){
       $.msg($.name, '【提示】🉐登录腾讯新闻app获取cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"});
-      return;
+      return
     }
   if ($.isNode()){
-      console.log(`\n============ 脚本执行来自 Github Action  ==============\n`)
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}=============\n`)
      }
@@ -128,7 +134,7 @@ if (isGetCookie) {
   })()
       .catch((e) => $.logErr(e))
       .finally(() => $.done())
-}
+
 
 function GetCookie() {
   if ($request &&$request.body.indexOf("article_read")> -1) {
@@ -279,7 +285,7 @@ function Redpack() {
         }
         catch(error){
           $.log("打开红包失败,响应数据: "+ data+"\n错误代码:"+error) };
-        $.msg($.name, "开红包失败，详情请看日志 ❌", err)
+          $.msg($.name, "开红包失败，详情请看日志 ❌", error)
         resolve()
       })
     },s)
