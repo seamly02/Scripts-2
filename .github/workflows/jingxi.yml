@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
     env:
         JD_COOKIE: ${{ secrets.JD_COOKIE }}
     steps:

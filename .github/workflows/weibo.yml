@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
     env:
         WB_TOKEN: ${{ secrets.WB_TOKEN }}
         WB_PAY: ${{ secrets.WB_PAY }}
