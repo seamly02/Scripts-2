@@ -166,7 +166,7 @@ function addDraw() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-              $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(response)}\n`)
+              $.log(`🐍🐢 ${cookieName} addDraw - response: ${JSON.stringify(response)}\n`)
                 if (data) {
                     add_Draw = JSON.parse(data)
                 }
