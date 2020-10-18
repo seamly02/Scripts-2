@@ -58,6 +58,7 @@ if ($.isNode()) {
       console.log(`============ 共${tokenArr.length}个米读账号  =============\n`)
      };
   for (let i = 0; i < tokenArr.length; i++) {
+    console.log(i)
     if (tokenArr[i]) {
       tokenVal = tokenArr[i];
       bodyVal = TimeArr[i];
