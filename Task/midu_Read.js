@@ -65,8 +65,7 @@ if ($.isNode()) {
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
      tkVal = drawVal.match(/tk=(\w+)/)[1]
-      console.log(TimeArr)
-   for (i=0;i<5;i++){
+    for (i=0;i<10;i++){
       await readTime()
      };   
       await prizeInfo();
@@ -80,7 +79,6 @@ if ($.isNode()) {
       await dice_roll();
       await dice_double();
       await userInfo();
-     bind ? '' : $.setdata('', 'bind');
      if (bind) {
           await Bind();
       }
@@ -149,7 +147,7 @@ function readTime() {
                 resolve()
             }
          })
-      },300)
+      },30000)
     })
 }
 
@@ -217,7 +215,6 @@ function Bind() {
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
-            $.setdata('', 'bind')
            resolve()
         })
     })
