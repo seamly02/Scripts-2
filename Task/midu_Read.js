@@ -62,14 +62,15 @@ if ($.isNode()) {
       tokenVal = tokenArr[i];
       bodyVal = TimeArr[i];
       drawVal = SignArr[i];
-      //console.log(bodyVal)
+      console.log(tokenVal)
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
     $.log(`🔔 ${cookieName}`)
    tkVal = drawVal.match(/tk=(\w+)/)[1]
+         console.log(tkVal)
    for (i=0;i<5;i++){
     await readTime();
-}   
+     }   
      await prizeInfo();
      if (prizeinfo && prizeinfo.data && prizeinfo.data.total_num) {
             await prizeTask()
@@ -89,6 +90,7 @@ if ($.isNode()) {
     await signVideo()
    }
  }
+ console.log(`-------------------------\n\n米读阅读完成，全部结束`)
 })()
   .catch((e) => $.log(`❌ ${cookieName} 签到失败: ${e}`))
 
