@@ -15,8 +15,8 @@ if ($.isNode()) {
   } else {
       miduToken = process.env.MIDU_TOKEN.split()
   };
- if (process.env.MIDU_TIME && process.env.MIDU_TIME.indexOf('\n') > -1) {
-     ReadBodys = process.env.MIDU_TIME.split('\n');
+ if (process.env.MIDU_TIME && process.env.MIDU_TIME.indexOf('#') > -1) {
+     ReadBodys = process.env.MIDU_TIME.split('#');
   } else {
       ReadBodys = process.env.MIDU_TIME.split()
   };
@@ -29,17 +29,17 @@ if ($.isNode()) {
         if (miduToken[item]) {
           tokenArr.push(miduToken[item])
         }
-      })
+      });
     Object.keys(ReadBodys).forEach((item) => {
         if (ReadBodys[item]) {
           TimeArr.push(ReadBodys[item])
         }
-      })
+      });
     Object.keys(SignBodys).forEach((item) => {
         if (SignBodys[item]) {
           SignArr.push(SignBodys[item])
         }
-    })
+      });
   } else {
       tokenArr.push($.getdata('tokenMidu_read'));
       TimeArr.push($.getdata('senku_readTimebody_midu'));
@@ -53,44 +53,41 @@ if ($.isNode()) {
     return;
   }
   if ($.isNode()){
-      console.log(`============ 共${tokenArr.length}个米读账号  =============\n`)
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}=============\n`)
+      console.log(`============ 共${tokenArr.length}个米读账号  =============\n`)
      };
   for (let i = 0; i < tokenArr.length; i++) {
     if (tokenArr[i]) {
       tokenVal = tokenArr[i];
       bodyVal = TimeArr[i];
       drawVal = SignArr[i];
-      console.log(TimeArr)
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
-    $.log(`🔔 ${cookieName}`)
-   tkVal = drawVal.match(/tk=(\w+)/)[1]
-    console.log(SignArr)
+     tkVal = drawVal.match(/tk=(\w+)/)[1]
+      console.log(TimeArr)
    for (i=0;i<5;i++){
-    await readTime();
-     }   
-     await prizeInfo();
+      await readTime()
+     };   
+      await prizeInfo();
      if (prizeinfo && prizeinfo.data && prizeinfo.data.total_num) {
-            await prizeTask()
-            await drawPrize()
-     }
-    await addDraw();
-    await taskTime();
-    await OthersAd();
-    await dice_roll();
-    await dice_double();
-    await userInfo();
-    bind ? '' : $.setdata('', 'bind');
-      if (bind) {
-         await Bind()
+          await prizeTask(),
+          await drawPrize()
+     };
+      await addDraw();
+      await taskTime();
+      await OthersAd();
+      await dice_roll();
+      await dice_double();
+      await userInfo();
+     bind ? '' : $.setdata('', 'bind');
+     if (bind) {
+          await Bind();
+      }
+      await signDay();
+      await signVideo()
     }
-    await signDay();
-    await signVideo()
-   }
- }
- console.log(`-------------------------\n\n米读阅读完成，全部结束`)
+  }
 })()
       .catch((e) => $.logErr(e))
       .finally(() => $.done())
@@ -151,10 +148,11 @@ function readTime() {
                 $.log(`❌ ${cookieName} readTime - response: ${JSON.stringify(response)}\n`)
                 resolve()
             }
-        })
+         })
       },300)
     })
 }
+
 function drawPrize() {
     return new Promise((resolve, reject) => {
         const url = {
@@ -220,7 +218,7 @@ function Bind() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             $.setdata('', 'bind')
-            resolve()
+           resolve()
         })
     })
 }
