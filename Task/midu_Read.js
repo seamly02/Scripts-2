@@ -15,8 +15,8 @@ if ($.isNode()) {
   } else {
       miduToken = process.env.MIDU_TOKEN.split()
   };
- if (process.env.MIDU_TIME && process.env.MIDU_TIME.indexOf('#') > -1) {
-     ReadBodys = process.env.MIDU_TIME.split('#');
+ if (process.env.MIDU_TIME && process.env.MIDU_TIME.indexOf('\n') > -1) {
+     ReadBodys = process.env.MIDU_TIME.split('\n');
   } else {
       ReadBodys = process.env.MIDU_TIME.split()
   };
