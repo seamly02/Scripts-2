@@ -14,14 +14,16 @@
     "url": "git+https://github.com/Sunert/Scripts.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sunert",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Sunert/Scripts/issues"
   },
   "homepage": "https://github.com/Sunert/Scripts#readme",
   "dependencies": {
+    "crypto-js": "^4.0.0",
     "got": "^11.7.0",
-    "node-schedule": "^1.2.0",
+    "http-server": "^0.12.3",
+    "tough-cookie": "^4.0.0"
   }
 }
