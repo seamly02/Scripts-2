@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/Sunert/Scripts#readme",
   "dependencies": {
-    "got": "^11.7.0",
+    "got": "^11.7.0"
   }
 }
