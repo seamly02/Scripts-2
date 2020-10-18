@@ -62,7 +62,7 @@ if ($.isNode()) {
       tokenVal = tokenArr[i];
       bodyVal = TimeArr[i];
       drawVal = SignArr[i];
-      console.log(tokenArr)
+      console.log(bodyVal)
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
     $.log(`🔔 ${cookieName}`)
@@ -124,7 +124,7 @@ function readTime() {
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
                      console.log("总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner)
                     if (readTotalMinute) {
-      console.log("总计阅读时长"+readTotalMinute / 2+"分钟，本次获得"+`${coin}`)
+      console.log("总计阅读时长"+readTotalMinute / 2+"分钟，本次获得+"+`${coin}金币\n`)
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
                   
                         //$.msg(cookieName, subTitle, detail)
