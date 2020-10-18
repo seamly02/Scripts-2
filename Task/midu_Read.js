@@ -62,7 +62,7 @@ if ($.isNode()) {
       tokenVal = tokenArr[i];
       bodyVal = TimeArr[i];
       drawVal = SignArr[i];
-      console.log(tokenVal)
+      console.log(tokenArr)
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
     $.log(`🔔 ${cookieName}`)
@@ -85,7 +85,7 @@ if ($.isNode()) {
     bind ? '' : $.setdata('', 'bind');
       if (bind) {
          await Bind()
-        }
+    }
     await signDay();
     await signVideo()
    }
