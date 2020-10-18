@@ -57,14 +57,15 @@ if ($.isNode()) {
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}=============\n`)
       console.log(`============ 共${tokenArr.length}个米读账号  =============\n`)
      };
+         console.log(tokenArr.length)
   for (let i = 0; i < tokenArr.length; i++) {
-    console.log(i)
     if (tokenArr[i]) {
       tokenVal = tokenArr[i];
       bodyVal = TimeArr[i];
       drawVal = SignArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
+      console.log(tokenArr)
      tkVal = drawVal.match(/tk=(\w+)/)[1]
     for (i=0;i<2;i++){
       await readTime()
