@@ -1,11 +1,17 @@
-
+/*
+MIDU_TOKEN 为 "https://apiwz.midukanshu.com/user/readTimeBase/readTime"此链接请求头内的token;
+MIDU_TIME  为 "https://apiwz.midukanshu.com/user/readTimeBase/readTime"此链接请求体，格式为 "dataEncStr=XXX;
+MIDU_SIGN 为 "https://apiwz.midukanshu.com/wz/task/" 请求体，格式为 "fullVersion=XXX"
+以上全部值不许换行，多账号用#分隔
+由于运行时间较长，则只在Actions运行
+*/
 const cookieName = '米读阅读时长'
 const $ = new Env(cookieName)
 let tokenArr = [], TimeArr = [],SignArr= [];
  const bind = true;
 if ($.isNode()) {
   if (process.env.MIDU_TOKEN && process.env.MIDU_TOKEN.indexOf('#') > -1) {
-     miduToken = process.env.MIDU_TOKEN.split('#');
+      miduToken = process.env.MIDU_TOKEN.split('#');
   } else {
       miduToken = process.env.MIDU_TOKEN.split()
   };
@@ -47,7 +53,7 @@ if ($.isNode()) {
     return;
   }
   if ($.isNode()){
-      console.log(`\n============ 脚本执行来自 Github Action  ==============\n`)
+      console.log(`============ 共${tokenArr.length}个米读账号  =============\n`)
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}=============\n`)
      };
@@ -116,10 +122,10 @@ function readTime() {
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
                      console.log("总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner)
                     if (readTotalMinute) {
-      console.log("总计阅读时长"+readTotalMinute / 2+"分钟")
+      console.log("总计阅读时长"+readTotalMinute / 2+"分钟，本次获得"+`${coin}`)
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
                   
-                        $.msg(cookieName, subTitle, detail)
+                        //$.msg(cookieName, subTitle, detail)
                     } else if ($.getdata('debug') == 'true') {
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
                        // $.msg(cookieName, subTitle, detail)
