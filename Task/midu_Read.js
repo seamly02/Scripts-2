@@ -67,7 +67,7 @@ if ($.isNode()) {
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
     $.log(`🔔 ${cookieName}`)
    tkVal = drawVal.match(/tk=(\w+)/)[1]
-   for (i=0;i<10;i++){
+   for (i=0;i<5;i++){
     await readTime();
 }   
      await prizeInfo();
@@ -148,7 +148,7 @@ function readTime() {
                 resolve()
             }
         })
-      },30000)
+      },300)
     })
 }
 function drawPrize() {
