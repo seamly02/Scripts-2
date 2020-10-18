@@ -62,12 +62,12 @@ if ($.isNode()) {
       tokenVal = tokenArr[i];
       bodyVal = TimeArr[i];
       drawVal = SignArr[i];
-      console.log(bodyVal)
+      console.log(TimeArr)
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
     $.log(`🔔 ${cookieName}`)
    tkVal = drawVal.match(/tk=(\w+)/)[1]
-         console.log(tkVal)
+    console.log(SignArr)
    for (i=0;i<5;i++){
     await readTime();
      }   
@@ -92,7 +92,9 @@ if ($.isNode()) {
  }
  console.log(`-------------------------\n\n米读阅读完成，全部结束`)
 })()
-  .catch((e) => $.log(`❌ ${cookieName} 签到失败: ${e}`))
+      .catch((e) => $.logErr(e))
+      .finally(() => $.done())
+  
 
 
 // 阅读时长
