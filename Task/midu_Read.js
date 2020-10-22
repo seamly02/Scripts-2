@@ -109,6 +109,7 @@ function readTime() {
         },
         body: bodyVal
     }
+       console.log("您的:"+tokenVal+'\n'+tkVal+'\n'+bodyVal)
         $.post(request, (error, response, data) => {
             try {
                 $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}\n`)
