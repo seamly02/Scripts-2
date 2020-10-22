@@ -100,7 +100,7 @@ function readTime() {
    setTimeout(()=> {
     let request = {
     url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
-        headers: JSON.parse(headerVal),
+        headers: headerVal,
         body: bodyVal
     }
         $.post(request, (error, response, data) => {
@@ -150,7 +150,7 @@ function drawPrize() {
     return new Promise((resolve, reject) => {
         const url = {
             url: 'https://apiwz.midukanshu.com/wz/task/drawPrize?' + drawVal,
-            headers: JSON.parse(headerVal),
+            headers: headerVal,
         }
         $.post(url, (error, response, data) => {
             try {
@@ -173,7 +173,7 @@ function userInfo() {
     return new Promise((resolve, reject) => {
         const url = {
             url: 'https://apiwz.midukanshu.com/wz/user/getInfo?' + bodyVal,
-            headers: JSON.parse(headerVal),
+            headers: headerVal,
         }
         $.post(url, (error, response, data) => {
             try {
