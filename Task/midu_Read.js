@@ -64,11 +64,12 @@ if ($.isNode()) {
       bodyVal = TimeArr[i];
       drawVal = SignArr[i];
       $.index = i + 1;
+      console.log(tokenArr)
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
      tkVal = drawVal.match(/tk=(\w+)/)[1]
     for (j=0;j<10;j++){
       await readTime()
-     };   
+     }; 
       await prizeInfo();
      if (prizeinfo && prizeinfo.data && prizeinfo.data.total_num) {
           await prizeTask(),
