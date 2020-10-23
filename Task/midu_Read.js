@@ -221,7 +221,7 @@ function addDraw() {
                // $.log(`🐍🐢 ${cookieName} addDraw - response: ${JSON.stringify(data)}\n`)
                     add_Draw = JSON.parse(data)
                 if(add_Draw.code==0){
-                  console.log("额外奖励："++add_Draw.data.msg)
+                  console.log("额外奖励："+add_Draw.data.msg)
                   }
                 resolve()
             } catch (e) {
