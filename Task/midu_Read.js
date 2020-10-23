@@ -143,10 +143,12 @@ function drawPrize() {
         }
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(data)}\n`)
-                if (data) {
-                    drawprize = JSON.parse(data)
-                }
+               // $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(data)}\n`)
+                  drawprize = JSON.parse(data)
+                  if(drawprize.code==0){
+                  console.log("抽奖任务："+drawprize.data.msg)
+                  }
+              
             } catch (e) {
                 // $.msg(cookieName, `抽奖: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} drawPrize - 抽奖失败: ${e}`)
@@ -175,7 +177,7 @@ function userInfo() {
                 corner = userinfo.data.goldCoinMoney
                 invite_code = userinfo.data.invite_code
                 today_coin = userinfo.data.todayGoldCoin
-                console.log("总计金币:"+total_coin+" 现金收益"+corner+'您今日所得总金币为'+ today_coin+'\n您的邀请码为'+ invite_code+'\n')
+                console.log("总计金币:"+total_coin+" 现金收益"+corner+'\n您今日所得总金币为'+ today_coin+'  您的邀请码为'+ invite_code+'\n')
                 }
                 resolve()
             } catch (e) {
@@ -244,20 +246,21 @@ function taskTime() {
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} taskTime - response: ${JSON.stringify(data)}\n`)
-                if (data) {
-                    drawprize = JSON.parse(data)
-                }
+                
+                    _taskTime = JSON.parse(data)
+                    
+                if(_taskTime.code==0){
+                  console.log("定时任务："+"+"_taskTime.data.amount)
+                  }
                 resolve()
             } catch (e) {
-                $.log(`❌ ${cookieName} taskTime - 抽奖失败: ${e}`)
+                $.log(`❌ ${cookieName} taskTime - 定时任务失败: ${e}`)
                 $.log(`❌ ${cookieName} taskTime - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })
     })
 }
-
-
 
 
 // 观看视频获取抽奖机会
@@ -321,7 +324,6 @@ function prizeInfo() {
 // 掷骰子
 function dice_roll() {
     return new Promise((resolve, reject) => {
-
         const url = {
             url: 'https://apiwz.midukanshu.com/wz/dice/roll',
             headers: {},
@@ -332,12 +334,12 @@ function dice_roll() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(data)}\n`)
+               // $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(data)}\n`)
                 rollList=JSON.parse(data)
                 if (rollList.code == 0) {
-                  console.log(rollList.message)
+                  console.log("掷骰子"+rollList.message)
                 } else if (rollList.code == '-10203'){
-                  console.log(rollList.message)
+                  console.log("掷骰子任务："+rollList.message)
                 }
                 resolve()
             } catch (e) {
@@ -369,7 +371,7 @@ function dice_double() {
                 if (doubleList.code == 0) {
                 console.log(doubleList.message)
                 } else if (doubleList.code == '-10205'){
-                console.log(doubleList.message)
+                console.log("骰子双倍奖励:"+doubleList.message)
                 }
                 resolve()
             } catch (e) {
@@ -395,8 +397,11 @@ function signDay() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} signDay - response: ${JSON.stringify(data)}\n`)
+                //$.log(`🐍🐢 ${cookieName} signDay - response: ${JSON.stringify(data)}\n`)
                 _signDay = JSON.parse(data)
+                if(_signDay.code==0){
+                  console.log("每日签到："+_signDay.data.amount)
+                  }
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `签到结果: 失败`, `说明: ${e}`)
