@@ -250,7 +250,7 @@ function taskTime() {
                     _taskTime = JSON.parse(data)
                     
                 if(_taskTime.code==0){
-                  console.log("定时任务："+"+"_taskTime.data.amount)
+                  console.log("定时任务："+"+"+_taskTime.data.amount)
                   }
                 resolve()
             } catch (e) {
