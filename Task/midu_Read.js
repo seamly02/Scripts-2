@@ -302,9 +302,10 @@ function prizeInfo() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                 $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(data)}\n`)
+                // $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(data)}\n`)
                 if (data) {
                     prizeinfo = JSON.parse(data)
+                    console.log("今日抽奖信息:"+prizeinfo.data.btnText)
                 }
                 resolve()
             } catch (e) {
@@ -332,8 +333,11 @@ function dice_roll() {
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(data)}\n`)
-                if (JSON.parse(data).code == 0) {
-                    rollList=JSON.parse(data)
+                rollList=JSON.parse(data)
+                if (rollList.code == 0) {
+                  console.log(rollList.message)
+                } else if (rollList.code == '-10203'){
+                  console.log(rollList.message)
                 }
                 resolve()
             } catch (e) {
@@ -360,9 +364,12 @@ function dice_double() {
         //url.headers['token'] = tokenVal
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} dice_double - response: ${JSON.stringify(data)}\n`)
-                if (JSON.parse(data).code == 0) {
-                    doubleList=JSON.parse(data)
+               // $.log(`🐍🐢 ${cookieName} dice_double - response: ${JSON.stringify(data)}\n`)
+                doubleList=JSON.parse(data)
+                if (doubleList.code == 0) {
+                console.log(doubleList.message)
+                } else if (doubleList.code == '-10205'){
+                console.log(doubleList.message)
                 }
                 resolve()
             } catch (e) {
@@ -413,6 +420,11 @@ function signVideo() {
             try {
                 $.log(`🐍🐢 ${cookieName} signVideo - response: ${JSON.stringify(data)}\n`)
                 _signVideo = JSON.parse(data)
+                if (_signVideo.code == 0) {
+                console.log("签到视频奖励得"+_signVideo.data.amount+"金币")
+                } else {
+                console.log(_signVideo.message)
+                }
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `签到视频: 失败`, `说明: ${e}`)
@@ -435,8 +447,11 @@ function OthersAd() {
         }
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} OthersAd - response: ${JSON.stringify(data)}\n`)
-                _signVideo = JSON.parse(data)
+               // $.log(`🐍🐢 ${cookieName} OthersAd - response: ${JSON.stringify(data)}\n`)
+                _OthersAd = JSON.parse(data)
+                if(_OthersAd.code==0){
+                console.log(_OthersAd.data.msg)
+                }
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `额外奖励: 失败`, `说明: ${e}`)
