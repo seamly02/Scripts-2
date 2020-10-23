@@ -162,13 +162,18 @@ function drawPrize() {
 function userInfo() {
     return new Promise((resolve, reject) => {
         const url = {
-            url: 'https://apiwz.midukanshu.com/wz/user/getInfo?' + bodyVal,
+            url: 'https://apiwz.midukanshu.com/wz/user/getInfo'
             headers: JSON.parse(headerVal),
+            body: bodyVal
         }
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} userInfo - response: ${JSON.stringify(data)}`)
                 userinfo = JSON.parse(data)
+                if (userinfo.code==0){
+                nick = userinfo.data.nickname
+            console.log(userinfo.data.btnText)
+                }
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `获取用户信息: 失败`, `说明: ${e}`)
