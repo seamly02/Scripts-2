@@ -41,7 +41,7 @@ let ReadArr = [], YouthBody = "",readscore = 0;
       console.log(`-------------------------\n\n开始中青看点第${$.index}次阅读`)
     }
   await AutoRead();
-  await $.await(30000)
+  await $.wait(30000)
   console.log("请等待30s后执行下一次阅读")
  }
    console.log(`-------------------------\n\n中青看点共完成${$.index}次阅读，共计获得${readscore}个青豆，阅读请求全部结束`)
