@@ -1,8 +1,9 @@
 /*
-MIDU_TOKEN 为 "https://apiwz.midukanshu.com/user/readTimeBase/readTime"此链接请求头内的token;
+MIDU_TOKEN 为 "https://apiwz.midukanshu.com/user/readTimeBase/readTime"此链接完整请求头;
 MIDU_TIME  为 "https://apiwz.midukanshu.com/user/readTimeBase/readTime"此链接请求体，格式为 "dataEncStr=XXX;
-MIDU_SIGN 为 "https://apiwz.midukanshu.com/wz/task/" 请求体，格式为 "fullVersion=XXX"
-以上全部值不许换行，多账号用#分隔
+MIDU_SIGN 为 "https://apiwz.midukanshu.com/wz/task/" 完整请求体，格式为 "fullVersion=XXX"
+以上全部值不许换行，多账号用#分隔;
+多账号退出一账号可能某些任务会提示失效
 由于运行时间较长，则只在Actions运行
 */
 const cookieName = '米读阅读时长'
@@ -64,7 +65,7 @@ if ($.isNode()) {
       bodyVal = TimeArr[i];
       drawVal = SignArr[i];
       $.index = i + 1;
-      console.log(tokenArr)
+      //console.log(tokenArr)
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
      tkVal = drawVal.match(/tk=(\w+)/)[1]
     for (j=0;j<10;j++){

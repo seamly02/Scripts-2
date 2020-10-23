@@ -8,7 +8,7 @@ Github Actions使用方法见[@lxk0301](https://raw.githubusercontent.com/lxk030
 
 */
 
-let s = 30000 //等待延迟30s
+//let s = 30000 //等待延迟30s
 const $ = new Env("中青看点")
 //const notify = $.isNode() ? require('./sendNotify') : '';
 let ReadArr = [], YouthBody = "",readscore = 0;
@@ -41,6 +41,8 @@ let ReadArr = [], YouthBody = "",readscore = 0;
       console.log(`-------------------------\n\n开始中青看点第${$.index}次阅读`)
     }
   await AutoRead();
+  await $.await(30000)
+  console.log("请等待30s后执行下一次阅读")
  }
    console.log(`-------------------------\n\n中青看点共完成${$.index}次阅读，共计获得${readscore}个青豆，阅读请求全部结束`)
 })()
@@ -60,7 +62,7 @@ function AutoRead() {
         };
         $.post(url, (error, response, data) => {
            let readres = JSON.parse(data);
-             console.log(data)
+             //console.log(data)
            if (readres.error_code == '0' && typeof readres.items.read_score === 'number') {
               console.log(`\n本次阅读获得${readres.items.read_score}个青豆，即将开始下次阅读\n`)
               readscore += readres.items.read_score
