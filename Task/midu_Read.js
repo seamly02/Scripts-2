@@ -161,7 +161,7 @@ function drawPrize() {
 function userInfo() {
     return new Promise((resolve, reject) => {
         const url = {
-            url: 'https://apiwz.midukanshu.com/wz/user/getInfo'
+            url: 'https://apiwz.midukanshu.com/wz/user/getInfo',
             headers: JSON.parse(headerVal),
             body: bodyVal
         }
