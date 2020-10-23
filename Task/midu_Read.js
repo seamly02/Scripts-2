@@ -218,10 +218,11 @@ function addDraw() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(data)}\n`)
-                if (data) {
+               // $.log(`🐍🐢 ${cookieName} addDraw - response: ${JSON.stringify(data)}\n`)
                     add_Draw = JSON.parse(data)
-                }
+                if(add_Draw.code==0){
+                  console.log("额外奖励："++add_Draw.data.msg)
+                  }
                 resolve()
             } catch (e) {
                 // $.msg(cookieName, `额外奖励: 失败`, `说明: ${e}`)
@@ -245,7 +246,7 @@ function taskTime() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} taskTime - response: ${JSON.stringify(data)}\n`)
+               // $.log(`🐍🐢 ${cookieName} taskTime - response: ${JSON.stringify(data)}\n`)
                 
                     _taskTime = JSON.parse(data)
                     
@@ -423,7 +424,7 @@ function signVideo() {
         }
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} signVideo - response: ${JSON.stringify(data)}\n`)
+               // $.log(`🐍🐢 ${cookieName} signVideo - response: ${JSON.stringify(data)}\n`)
                 _signVideo = JSON.parse(data)
                 if (_signVideo.code == 0) {
                 console.log("签到视频奖励得"+_signVideo.data.amount+"金币")
@@ -455,7 +456,7 @@ function OthersAd() {
                // $.log(`🐍🐢 ${cookieName} OthersAd - response: ${JSON.stringify(data)}\n`)
                 _OthersAd = JSON.parse(data)
                 if(_OthersAd.code==0){
-                console.log(_OthersAd.data.msg)
+                console.log("额外奖励"+_OthersAd.data.msg)
                 }
                 resolve()
             } catch (e) {
