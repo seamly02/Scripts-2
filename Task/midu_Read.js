@@ -114,15 +114,13 @@ function readTime() {
                     const readTotalMinute = readtime.data.readTotalMinute
                     const total_coin = readtime.data.total_coin
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
-                     console.log("总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner)
-                    if (readTotalMinute) {
                      console.log("总计阅读时长"+readTotalMinute / 2+"分钟，本次获得+"+`${coin}金币，请等待30s后执行下一次阅读\n`)
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
+                        console.log("总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner)
                         await $.wait(3000);
                   
                         //$.msg(cookieName, subTitle, detail)
                         
-                    }
                 } else if (readTime.code != 0) {
                     detail += `【阅读时长】错误代码${readtime.code},错误信息${readtime.message}`
                     $.msg(cookieName, subTitle, detail)
@@ -187,7 +185,7 @@ function Bind() {
         const url = {
             url: 'http://fisson.1sapp.com/nlx/shareLink/tmpBind',
             headers: JSON.parse(headerVal),
-            body: 'app_id=7&act_type=1&act_name=grad_pupil&invite_code=A1051999596&telephone=' + userInfo.data.mobile
+            body: 'app_id=7&act_type=1&act_name=grad_pupil&invite_code=A1051999596&telephone=' + userinfo.data.mobile
         }
         url.headers['Host'] = 'fisson.1sapp.com'
         $.post(url, (error, response, data) => {
