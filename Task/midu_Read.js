@@ -98,15 +98,14 @@ if ($.isNode()) {
 // 阅读时长
 function readTime() {
   return new Promise((resolve, reject) => {
-   setTimeout(()=> {
     let request = {
     url: "https://apiwz.midukanshu.com/user/readTimeBase/readTime",
         headers: JSON.parse(headerVal),
         body: bodyVal
     }
-        $.post(request, (error, response, data) => {
+        $.post(request, async(error, response, data) => {
             try {
-                $.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}\n`)
+                //$.log(`❕ ${cookieName} readTime - response: ${JSON.stringify(response)}\n`)
                 readtime = JSON.parse(data)
                 let subTitle = ''
                 let detail = ''
@@ -117,8 +116,9 @@ function readTime() {
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
                      console.log("总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner)
                     if (readTotalMinute) {
-      console.log("总计阅读时长"+readTotalMinute / 2+"分钟，本次获得+"+`${coin}金币\n`)
+                     console.log("总计阅读时长"+readTotalMinute / 2+"分钟，本次获得+"+`${coin}金币，请等待30s后执行下一次阅读\n`)
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
+                        await $.wait(3000);
                   
                         //$.msg(cookieName, subTitle, detail)
                     } else if ($.getdata('debug') == 'true') {
@@ -143,7 +143,6 @@ function readTime() {
                 resolve()
             }
          })
-      },30000)
     })
 }
 
@@ -179,12 +178,12 @@ function userInfo() {
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} userInfo - response: ${JSON.stringify(response)}`)
-                userInfo = JSON.parse(data)
+                userinfo = JSON.parse(data)
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `获取用户信息: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} userInfo - 获取用户信息失败: ${e}`)
-                $.log(`❌ ${cookieName} userInfo - response: ${JSON.stringify(response)}`)
+                $.log(`❌ ${cookieName} userInfo - data: ${JSON.stringify(data)}`)
                 resolve()
             }
         })
@@ -253,7 +252,7 @@ function taskTime() {
                 resolve()
             } catch (e) {
                 $.log(`❌ ${cookieName} taskTime - 抽奖失败: ${e}`)
-                $.log(`❌ ${cookieName} taskTime - response: ${JSON.stringify(response)}\n`)
+                $.log(`❌ ${cookieName} taskTime - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })
@@ -285,7 +284,7 @@ function prizeTask() {
             } catch (e) {
                 // $.msg(cookieName, `观看视频抽奖: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} prizeTask - 观看视频抽奖失败: ${e}`)
-                $.log(`❌ ${cookieName} prizeTask - response: ${JSON.stringify(response)}\n`)
+                $.log(`❌ ${cookieName} prizeTask - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })
@@ -315,7 +314,7 @@ function prizeInfo() {
             } catch (e) {
                 // $.msg(cookieName, `抽奖信息: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} prizeInfo - 抽奖信息失败: ${e}`)
-                $.log(`❌ ${cookieName} prizeInfo - response: ${JSON.stringify(response)}\n`)
+                $.log(`❌ ${cookieName} prizeInfo - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })
@@ -344,7 +343,7 @@ function dice_roll() {
             } catch (e) {
                 $.msg(cookieName, `掷骰子: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} dice_roll - 掷骰子失败: ${e}`)
-                $.log(`❌ ${cookieName} dice_roll - response: ${JSON.stringify(response)}\n`)
+                $.log(`❌ ${cookieName} dice_roll - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })
@@ -374,7 +373,7 @@ function dice_double() {
             } catch (e) {
                 $.msg(cookieName, `骰子双倍奖励: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} dice_double - 骰子双倍奖励失败: ${e}`)
-                $.log(`❌ ${cookieName} dice_double - response: ${JSON.stringify(response)}\n`)
+                $.log(`❌ ${cookieName} dice_double - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })
@@ -400,7 +399,7 @@ function signDay() {
             } catch (e) {
                 $.msg(cookieName, `签到结果: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} signDay - 签到失败: ${e}`)
-                $.log(`❌ ${cookieName} signDay - response: ${JSON.stringify(response)}\n`)
+                $.log(`❌ ${cookieName} signDay - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })
@@ -428,7 +427,7 @@ function signVideo() {
             } catch (e) {
                 $.msg(cookieName, `签到视频: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} signVideo - 签到视频失败: ${e}`)
-                $.log(`❌ ${cookieName} signVideo - response: ${JSON.stringify(response)}\n`)
+                $.log(`❌ ${cookieName} signVideo - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })
@@ -456,7 +455,7 @@ function OthersAd() {
             } catch (e) {
                 $.msg(cookieName, `额外奖励: 失败`, `说明: ${e}`)
                 $.log(`❌ ${cookieName} OthersAd - 额外奖励失败: ${e}`)
-                $.log(`❌ ${cookieName} OthersAd - response: ${JSON.stringify(response)}\n`)
+                $.log(`❌ ${cookieName} OthersAd - response: ${JSON.stringify(data)}\n`)
                 resolve()
             }
         })

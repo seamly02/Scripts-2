@@ -130,10 +130,6 @@ if ($.isNode()) {
     timeArr.push($.getdata('readtime_zq'));
 }
 
-const firstcheck = $.getdata('signt');
-const runtimes = $.getdata('times');
-const opboxtime = $.getdata('opbox');
-
 if (isGetCookie = typeof $request !== 'undefined') {
    GetCookie();
    $.done()
@@ -152,7 +148,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
       redpbodyVal = redpArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【中青看点${$.index}】`)
-    }
+      }
   await sign();
   await signInfo();
   await Invitant();
@@ -220,7 +216,7 @@ function sign() {
         }
         $.post(signurl, (error, response, data) => {
             signres = JSON.parse(data)
-        const date =  $.time(`MMdd`)
+            const date =  $.time(`MMdd`)
             if (signres.status == 2) {
                 signresult = `签到失败，Cookie已失效‼️`;
                 $.msg($.name, signresult, "");
@@ -228,16 +224,10 @@ function sign() {
             } else if (signres.status == 1) {
                  signresult = `【签到结果】成功 🎉 明日+${signres.nextScore} `
                 //detail = `【签到结果】成功 🎉 青豆: +${signres.score}，明日青豆: +${signres.nextScore}\n`
-                $.setdata(1,'times')
-              if(firstcheck==undefined||firstcheck!=date){
-                $.setdata(date,'signt');
-              }
+          
             } else if (signres.status == 0) {
                 signresult = `【签到结果】重复`;
                 detail = "";
-              if(runtimes!==undefined){
-              $.setdata(`${parseInt(runtimes)+1}`,'times')  
-              }
             }
            resolve() 
         })
