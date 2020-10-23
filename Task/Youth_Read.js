@@ -52,7 +52,6 @@ let ReadArr = [], YouthBody = "",readscore = 0;
 
 function AutoRead() {
     return new Promise((resolve, reject) => {
-      setTimeout(()=> {
        let url = {
             url: `https://ios.baertt.com/v5/article/complete.json`,
             headers: {
@@ -79,7 +78,6 @@ function AutoRead() {
             }
           resolve()
         })
-      },s)
     })
 }
 
