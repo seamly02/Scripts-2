@@ -68,6 +68,7 @@ if ($.isNode()) {
       //console.log(tokenArr)
       console.log(`-------------------------\n\n开始【米读账号${$.index}】`)
      tkVal = drawVal.match(/tk=(\w+)/)[1]
+      await userInfo();
     for (j=0;j<10;j++){
       await readTime()
      }; 
@@ -81,7 +82,6 @@ if ($.isNode()) {
       await OthersAd();
       await dice_roll();
       await dice_double();
-      await userInfo();
      if (bind) {
           await Bind();
       }
@@ -116,7 +116,6 @@ function readTime() {
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
                      console.log("总计阅读时长"+readTotalMinute / 2+"分钟，本次获得+"+`${coin}金币，请等待30s后执行下一次阅读\n`)
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
-                        console.log("总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner)
                         await $.wait(3000);
                   
                         //$.msg(cookieName, subTitle, detail)
@@ -168,11 +167,15 @@ function userInfo() {
         }
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} userInfo - response: ${JSON.stringify(data)}`)
+                //$.log(`🐍🐢 ${cookieName} userInfo - response: ${JSON.stringify(data)}`)
                 userinfo = JSON.parse(data)
                 if (userinfo.code==0){
                 nick = userinfo.data.nickname
-            console.log(userinfo.data.btnText)
+                total_coin = userinfo.data.goldCoin
+                corner = userinfo.data.goldCoinMoney
+                invite_code = userinfo.data.invite_code
+                today_coin = userinfo.data.todayGoldCoin
+                console.log("总计金币:"+total_coin+" 现金收益"+corner+'您今日所得总金币为'+ today_coin+'\n您的邀请码为'+ invite_code+'\n')
                 }
                 resolve()
             } catch (e) {
@@ -294,7 +297,6 @@ function prizeInfo() {
             headers: {},
             body: drawVal
         }
-        //url.headers['token'] = tokenVal
         url.headers['Host'] = 'apiwz.midukanshu.com'
         url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
