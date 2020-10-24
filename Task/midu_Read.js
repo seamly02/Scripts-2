@@ -403,7 +403,6 @@ function dice_addnum() {
               if(diceaddnum.code==0){
                   console.log("获取骰子次数:"+diceaddnum.data.title)
                   }
-                }
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `获取骰子次数: 失败`, `说明: ${e}`)
