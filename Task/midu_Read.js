@@ -80,6 +80,7 @@ if ($.isNode()) {
       await addDraw();
       await taskTime();
       await OthersAd();
+      await dice_addnum();
       await dice_roll();
       await dice_double();
      if (bind) {
@@ -146,7 +147,7 @@ function drawPrize() {
                 $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(data)}\n`)
                   drawprize = JSON.parse(data)
                   if(drawprize.code==0){
-                  console.log("抽奖任务："+drawprize.data.msg)
+                  console.log("抽奖任务："+drawprize.data.title)
                   }
               
             } catch (e) {
@@ -307,7 +308,7 @@ function prizeInfo() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                 $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(data)}\n`)
+                 //$.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(data)}\n`)
                 if (data) {
                     prizeinfo = JSON.parse(data)
                     console.log("今日抽奖信息:"+prizeinfo.data.btnText)
@@ -385,6 +386,36 @@ function dice_double() {
         })
     })
 }
+function dice_addnum() {
+    return new Promise((resolve, reject) => {
+        const dice_addnum_urlVal = 'https://apiwz.midukanshu.com/wz/dice/addChangeNumByRewardVideo?' + drawVal
+        const url = {
+            url: dice_addnum_urlVal,
+            headers: {}
+        }
+        url.headers['Host'] = 'apiwz.midukanshu.com'
+        url.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        url.headers['User-Agent'] = 'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 miduapp qapp'
+        $.post(url, (error, response, data) => {
+            try {
+                $.log(`🐍🐢 ${cookieName} dice_addnum - response: ${JSON.stringify(data)}`)
+              diceaddnum=JSON.parse(data)
+              if(diceaddnum.code==0){
+                  console.log("获取骰子次数:"+diceaddnum.data.title)
+                  }
+                }
+                resolve()
+            } catch (e) {
+                $.msg(cookieName, `获取骰子次数: 失败`, `说明: ${e}`)
+                $.log(`❌ ${cookieName} dice_addnum - 获取骰子次数失败: ${e}`)
+                $.log(`❌ ${cookieName} dice_addnum - response: ${JSON.stringify(data)}`)
+                resolve()
+            }
+        })
+    })
+}
+
+  
   
 // 每日签到
 function signDay() {
