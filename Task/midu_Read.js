@@ -116,7 +116,7 @@ function readTime() {
                     coin == 0 ? detail += `` : detail += `【阅读时长】获得${coin}💰`
                      console.log("总计阅读时长"+readTotalMinute / 2+"分钟，本次获得+"+`${coin}金币，请等待30s后执行下一次阅读\n`)
                         readTotalMinute ? detail += ` 阅读时长${readTotalMinute / 2}分钟,该账户:${total_coin}💰` : detail += `该账户:${total_coin}💰`
-                        await $.wait(3000);
+                        await $.wait(30000);
                   
                         //$.msg(cookieName, subTitle, detail)
                         
@@ -143,7 +143,7 @@ function drawPrize() {
         }
         $.post(url, (error, response, data) => {
             try {
-               // $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(data)}\n`)
+                $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(data)}\n`)
                   drawprize = JSON.parse(data)
                   if(drawprize.code==0){
                   console.log("抽奖任务："+drawprize.data.msg)
@@ -279,9 +279,10 @@ function prizeTask() {
         $.post(url, (error, response, data) => {
             try {
                 $.log(`🐍🐢 ${cookieName} prizeTask - response: ${JSON.stringify(data)}\n`)
-                if (data) {
-                    prizetask = JSON.parse(data)
-                }
+                prizetask = JSON.parse(data)
+              if(prizetask.code==0){
+                  console.log("观看视频： "+prizetask.data.title)
+                  }
                 resolve()
             } catch (e) {
                 // $.msg(cookieName, `观看视频抽奖: 失败`, `说明: ${e}`)
@@ -306,7 +307,7 @@ function prizeInfo() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                // $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(data)}\n`)
+                 $.log(`🐍🐢 ${cookieName} prizeInfo - response: ${JSON.stringify(data)}\n`)
                 if (data) {
                     prizeinfo = JSON.parse(data)
                     console.log("今日抽奖信息:"+prizeinfo.data.btnText)
@@ -335,7 +336,7 @@ function dice_roll() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-               // $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(data)}\n`)
+                $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(data)}\n`)
                 rollList=JSON.parse(data)
                 if (rollList.code == 0) {
                   console.log("掷骰子"+rollList.message)
@@ -367,10 +368,10 @@ function dice_double() {
         //url.headers['token'] = tokenVal
         $.post(url, (error, response, data) => {
             try {
-               // $.log(`🐍🐢 ${cookieName} dice_double - response: ${JSON.stringify(data)}\n`)
+                $.log(`🐍🐢 ${cookieName} dice_double - response: ${JSON.stringify(data)}\n`)
                 doubleList=JSON.parse(data)
                 if (doubleList.code == 0) {
-                console.log(doubleList.message)
+                console.log("骰子双倍奖励:"+doubleList.message)
                 } else if (doubleList.code == '-10205'){
                 console.log("骰子双倍奖励:"+doubleList.message)
                 }
@@ -401,7 +402,7 @@ function signDay() {
                 //$.log(`🐍🐢 ${cookieName} signDay - response: ${JSON.stringify(data)}\n`)
                 _signDay = JSON.parse(data)
                 if(_signDay.code==0){
-                  console.log("每日签到："+_signDay.data.amount)
+                  console.log("每日签到："+_signDay.data.amount+"金币")
                   }
                 resolve()
             } catch (e) {
@@ -456,7 +457,7 @@ function OthersAd() {
                // $.log(`🐍🐢 ${cookieName} OthersAd - response: ${JSON.stringify(data)}\n`)
                 _OthersAd = JSON.parse(data)
                 if(_OthersAd.code==0){
-                console.log("额外奖励"+_OthersAd.data.msg)
+                console.log("额外奖励： "+_OthersAd.data.msg)
                 }
                 resolve()
             } catch (e) {
