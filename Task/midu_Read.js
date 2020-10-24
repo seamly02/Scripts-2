@@ -147,7 +147,7 @@ function drawPrize() {
                 $.log(`🐍🐢 ${cookieName} drawPrize - response: ${JSON.stringify(data)}\n`)
                   drawprize = JSON.parse(data)
                   if(drawprize.code==0){
-                  console.log("抽奖任务："+drawprize.data.title)
+                  console.log("转盘抽奖任务："+drawprize.data.title)
                   }
               
             } catch (e) {
@@ -248,9 +248,7 @@ function taskTime() {
         $.post(url, (error, response, data) => {
             try {
                // $.log(`🐍🐢 ${cookieName} taskTime - response: ${JSON.stringify(data)}\n`)
-                
                     _taskTime = JSON.parse(data)
-                    
                 if(_taskTime.code==0){
                   console.log("定时任务："+"+"+_taskTime.data.amount)
                   }
@@ -279,10 +277,10 @@ function prizeTask() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 qapp miduapp'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} prizeTask - response: ${JSON.stringify(data)}\n`)
+               // $.log(`🐍🐢 ${cookieName} prizeTask - response: ${JSON.stringify(data)}\n`)
                 prizetask = JSON.parse(data)
               if(prizetask.code==0){
-                  console.log("观看视频： "+prizetask.data.title)
+                  console.log("抽奖次数： "+prizetask.data.title)
                   }
                 resolve()
             } catch (e) {
@@ -337,10 +335,10 @@ function dice_roll() {
         url.headers['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(data)}\n`)
+               // $.log(`🐍🐢 ${cookieName} dice_roll - response: ${JSON.stringify(data)}\n`)
                 rollList=JSON.parse(data)
                 if (rollList.code == 0) {
-                  console.log("掷骰子"+rollList.message)
+                  console.log("掷骰子获得"+rollList.data.roll_coin+"金币")
                 } else if (rollList.code == '-10203'){
                   console.log("掷骰子任务："+rollList.message)
                 }
@@ -386,6 +384,7 @@ function dice_double() {
         })
     })
 }
+//获取骰子次数:
 function dice_addnum() {
     return new Promise((resolve, reject) => {
         const dice_addnum_urlVal = 'https://apiwz.midukanshu.com/wz/dice/addChangeNumByRewardVideo?' + drawVal
@@ -398,10 +397,10 @@ function dice_addnum() {
         url.headers['User-Agent'] = 'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 miduapp qapp'
         $.post(url, (error, response, data) => {
             try {
-                $.log(`🐍🐢 ${cookieName} dice_addnum - response: ${JSON.stringify(data)}`)
+               // $.log(`🐍🐢 ${cookieName} dice_addnum - response: ${JSON.stringify(data)}`)
               diceaddnum=JSON.parse(data)
-              if(diceaddnum.code==0){
-                  console.log("获取骰子次数:"+diceaddnum.data.title)
+              if(diceaddnum.code=='-10208'){
+                  console.log("获取骰子次数:"+diceaddnum.message)
                   }
                 resolve()
             } catch (e) {
@@ -414,7 +413,6 @@ function dice_addnum() {
     })
 }
 
-  
   
 // 每日签到
 function signDay() {
