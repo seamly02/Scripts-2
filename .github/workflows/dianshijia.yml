@@ -1,7 +1,8 @@
 #    if: github.event.repository.owner.id == github.event.sender.id
 
 
-name: dianshijia
+name: 电视家
+
 
 on:
   workflow_dispatch:
@@ -16,14 +17,14 @@ jobs:
         DSJ_DRAWAL: ${{ secrets.DSJ_DRAWAL }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v1
       - name: Cache node modules
         uses: actions/cache@v1
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/checkout@v1
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
         with:
           node-version: 14.x
       - name: npm install
